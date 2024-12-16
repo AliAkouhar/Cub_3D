@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 LIBFT = libft/libft.a

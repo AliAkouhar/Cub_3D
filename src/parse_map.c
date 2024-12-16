@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tiima <tiima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:47:59 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/09/10 14:29:39 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/16 16:02:07 by tiima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	check_player_position(t_cub *cub, int x)
 			{
 				pos_count++;
 				cub->player_x = j;
-				cub->player_x = i;
+				cub->player_y = i;
 			}
 		}
 	}
