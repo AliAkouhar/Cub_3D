@@ -31,7 +31,7 @@ int	main(int ac, char **av)
 	t_cub	cub;
 
 	init_cub(&cub);
-	ft_parcing(&cub, ac, av);
+	ft_parsing(&cub, ac, av);
 	void *mlx = mlx_init();
 	void *win = mlx_new_window(mlx, 500, 500, "hhhhhh");
 	(void)win;

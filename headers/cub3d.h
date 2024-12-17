@@ -42,7 +42,7 @@ typedef struct cub
 	int		player_y;
 }			t_cub;
 
-void		ft_parcing(t_cub *cub, int ac, char **av);
+void		ft_parsing(t_cub *cub, int ac, char **av);
 void		is_extension(char *str);
 void		parse_map(t_cub *cub);
 void		parse_color(char *line, t_color *color);

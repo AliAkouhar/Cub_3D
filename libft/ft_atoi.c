@@ -34,5 +34,7 @@ int	ft_atoi(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
+	if (str[i])
+		exit(printf("Error\nEnter a valid RGB value\n"));
 	return (res * signe);
 }

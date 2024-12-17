@@ -87,7 +87,7 @@ void	check_player_position(t_cub *cub, int x)
 			{
 				pos_count++;
 				cub->player_x = j;
-				cub->player_x = i;
+				cub->player_y = i;
 			}
 		}
 	}

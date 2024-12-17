@@ -1,9 +1,9 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 LIBFT = libft/libft.a
 GNL = gnl/gnl
-SRC = src/main.c src/parcing.c src/utils.c src/parse_map.c src/color.c src/check_map.c
+SRC = src/main.c src/parsing.c src/utils.c src/parse_map.c src/color.c src/check_map.c
 OBJ_DIR = obj
 OBJ = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 

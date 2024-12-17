@@ -60,7 +60,7 @@ void	open_map(t_cub *cub, char *str)
 	free(content);
 }
 
-void	ft_parcing(t_cub *cub, int ac, char **av)
+void	ft_parsing(t_cub *cub, int ac, char **av)
 {
 	if (ac != 2)
 	{
