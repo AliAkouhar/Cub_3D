@@ -6,7 +6,7 @@
 /*   By: tiima <tiima@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/09/11 14:35:35 by tiima            ###   ########.fr       */
+/*   Updated: 2024/12/16 15:43:35 by tiima            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define HEIGHT 1500
+# define WIDTH 900
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
+
 typedef struct color
 {
 	int		r;
@@ -31,11 +38,9 @@ typedef struct color
 
 typedef struct cub
 {
-	char	**map;
-	char	*no_texture;
-	char	*so_texture;
-	char	*we_texture;
-	char	*ea_texture;
+	char	*content;
+	char	**map_content;
+	char 	*textures_path[4];
 	t_color	floor_color;
 	t_color	ceiling_color;
 	int		player_x;
@@ -45,15 +50,16 @@ typedef struct cub
 void		ft_parsing(t_cub *cub, int ac, char **av);
 void		is_extension(char *str);
 void		parse_map(t_cub *cub);
-void		parse_color(char *line, t_color *color);
+void		parse_line(char *line, t_cub *cub, int *flag);
+void		parse_color(char *line, t_color *color, int *flag);
 char		*parse_texture(char *line);
-int			check_color(t_cub *cub);
-void		is_valid_map(t_cub *cub, int x);
-void		check_side_borders(t_cub *cub, int x);
-void    	check_other_char(char **map, int x);
-int 		check_char(char c);
-void		check_player_position(t_cub *cub, int x);
-void		ft_norm(char *line, t_cub *cub);
+void		check_colors(t_cub *cub);
+void		is_valid_map(t_cub *cub);
+void		check_side_borders(t_cub *cub);
+void    	check_other_char(char **map);
+void		check_map(t_cub*cub);
+void		check_player_position(t_cub *cub);
+void    	check_textures(t_cub *cub);
 
 void		free_2d(char **str);
 

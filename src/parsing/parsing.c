@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../../headers/cub3d.h"
 
 void	is_extension(char *str)
 {
@@ -32,42 +32,61 @@ void	is_extension(char *str)
 	}
 }
 
-void	open_map(t_cub *cub, char *str)
+int	ft_get_size(char *str)
 {
-	int		fd;
-	char	*content;
-	char	*helper;
+	int fd;
+	int	i;
+	char *helper;
 
+	i = 0;
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
+		exit(printf("Error\nConnot open the Map\n"));
+	helper = get_next_line(fd);
+	while (helper)
 	{
-		printf("Error\n");
-		printf("File doesn't exist or can't be opened for reading.\n");
-		exit(1);
-	}
-	content = NULL;
-	while (1)
-	{
-		helper = get_next_line(fd);
-		if (!helper)
-			break ;
-		content = ft_strjoin2(content, helper);
 		free(helper);
+		helper = get_next_line(fd);
+		i++;
 	}
-	if (!content || *content == '\0')
-		exit(printf("Error\nThe map is empty\n"));
-	cub->map = ft_split(content, '\n');
-	free(content);
+	close(fd);
+	return (i);
+}
+
+void	get_map(t_cub *cub, char *str)
+{
+	int fd;
+	int	i;
+	char *helper;
+
+	cub->map_content = malloc(sizeof(char *) * (ft_get_size(str) + 1));
+	if (!cub->map_content)
+		exit(printf("Error\nAllocation issue\n"));
+	i = 0;
+	fd = open(str, O_RDONLY);
+	helper = get_next_line(fd);
+	while (helper)
+	{
+		cub->map_content[i++] = ft_strdup(helper);
+		free(helper);
+		helper = get_next_line(fd);
+	}
+	cub->map_content[i] = NULL;
+	close(fd);
+	if (!cub->map_content)
+		exit(printf("Error\nThe file is empty\n"));
 }
 
 void	ft_parsing(t_cub *cub, int ac, char **av)
 {
 	if (ac != 2)
 	{
-		printf("ERROR\nEnter just one argument\n");
+		printf("ERROR\nEnter one argument\n");
 		exit(1);
 	}
 	is_extension(av[1]);
-	open_map(cub, av[1]);
-	parse_map(cub);
+	get_map(cub, av[1]);
+	check_textures(cub);
+	check_colors(cub);
+	check_map(cub);
 }

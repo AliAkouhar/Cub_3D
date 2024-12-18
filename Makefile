@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 LIBFT = libft/libft.a
 GNL = gnl/gnl
-SRC = src/main.c src/parsing.c src/utils.c src/parse_map.c src/color.c src/check_map.c
+SRC = ./src/main.c ./src/parsing/parsing.c ./src/parsing/utils.c ./src/parsing/check_map.c ./src/parsing/parse_map.c  ./src/parsing/parse_textures.c ./src/parsing/parse_colors.c
 OBJ_DIR = obj
 OBJ = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
 
@@ -18,6 +18,7 @@ $(GNL):
 
 $(LIBFT):
 	make -C libft
+	make bonus -C libft
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(CFLAGS) $(GNL) $(LIBFT) -L headers/minilibx-linux -lmlx -lXext -lX11 -o $(NAME)
