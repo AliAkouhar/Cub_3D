@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "../headers/cub3d.h"
 
 int is_all_whitespaces(char *str)
 {
@@ -29,23 +29,26 @@ int is_all_whitespaces(char *str)
 void    fill_map(t_cub *cub)
 {
     int     i;
+    char    *tmp;
 
-    i = 0;
-    while (cub->map_content[i])
-    {
+    i = -1;
+    while (cub->map_content[++i])
         cub->content = ft_strjoin2(cub->content, cub->map_content[i]);
-        i++;
-    }
     free_2d(cub->map_content);
-    cub->content = ft_strtrim(cub->content, " \t\n");
+    cub->map_content = NULL;
+    tmp = cub->content;
+    cub->content = ft_strtrim(cub->content, "\t\n");
+    fre(tmp);
     if (!cub->content || cub->content[0] == '\0' || is_all_whitespaces(cub->content))
     {
-        // free dakchi
+        fre(cub->content);
+        free_all_map(cub);
         exit(printf("Error\nEmpty map\n"));
     }
-    if ((cub->content[0] != '1' && cub->content[0] != '0') || (cub->content[ft_strlen(cub->content) - 1] != '1' && cub->content[ft_strlen(cub->content) - 1] != '0'))
+    if (!check_char(cub->content[0]) || (!check_char(cub->content[ft_strlen(cub->content) - 1]) && cub->content[ft_strlen(cub->content) - 1] != '\n'))
     {
-        //free
+        fre(cub->content);
+        free_all_map(cub);
         exit(printf("Error\nInvalid configuration\n"));
     }
 }
@@ -58,11 +61,12 @@ void	check_empty_line(t_cub *cub, char *str)
 	while (str[++i])
 		if (str[i] == '\n' && str[i + 1] == '\n')
 		{
-            //free dakchi
+            fre(str);
+            free_all_map(cub);
 			exit(printf("Error\nFound an empty line inside the map\n"));
 		}
 	cub->map_content = ft_split(str, '\n');
-	free(str);
+	fre(str);
 }
 
 void	check_player_position(t_cub *cub)
@@ -89,14 +93,14 @@ void	check_player_position(t_cub *cub)
 	}
 	if (pos_count != 1)
     {
-        // free dakchi
+        free_all_map(cub);
         exit(printf("Error\nInvalid number of player position\n"));
     }
 }
 
 void	check_map(t_cub*cub)
 {
-    fill_map(cub);
-    check_empty_line(cub, cub->content);
+    fill_map(cub); //done
+    check_empty_line(cub, cub->content); //done
     is_valid_map(cub);
 }

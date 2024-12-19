@@ -1,4 +1,4 @@
-# include "../../headers/cub3d.h"
+# include "../headers/cub3d.h"
 
 int check_digit(char **str)
 {
@@ -24,41 +24,32 @@ int check_digit(char **str)
     return (0);
 }
 
-void    check_rgb(int *j, char *str, t_cub *cub, char c)
+void    check_rgb(int *j, char *str, t_cub *cub, char c, char *to_free)
 {
     char    **split;
     char    *trim;
 
+    split = NULL;
     trim = ft_strtrim(str, " \t");
     split = ft_split(trim, ',');
-    free(trim);
+    fre(trim);
     if (!split || check_digit(split) == -1)
     {
-        //free dakchi
+        free_2d(split);
+        free_all_map(cub);
+        fre(to_free);
         exit(printf("Error\nInvalid color format\n"));
     }
-    if (c == 'F')
-    {
-        cub->floor_color.r = ft_atoi(split[0]);
-        cub->floor_color.g = ft_atoi(split[1]);
-        cub->floor_color.b = ft_atoi(split[2]);
-    }
-    else if (c == 'C')
-    {
-        cub->ceiling_color.r = ft_atoi(split[0]);
-        cub->ceiling_color.g = ft_atoi(split[1]);
-        cub->ceiling_color.b = ft_atoi(split[2]);
-    }
+    assign_color(cub, split, c);
     (*j)++;
     free_2d(split);
 }
 
 void    check_color_num(int j, t_cub *cub)
 {
-    (void)cub;
     if (j != 2)
     {
-        //free the map and textures
+        free_all_map(cub);
         exit(printf("Error\nWrong number of color\n"));
     }
 }
@@ -76,19 +67,11 @@ void    check_colors(t_cub *cub)
         trim = ft_strtrim(cub->map_content[i], " \t\n");
         if (ft_isdigit(trim[0]))
             break;
-        if (!ft_strncmp(trim, "F ", 2))
-        {
-            check_rgb(&j, trim + 2, cub, 'F');
-            free(cub->map_content[i]);
-            cub->map_content[i] = ft_strdup("");
-        }
-        if (!ft_strncmp(trim, "C ", 2))
-        {
-            check_rgb(&j, trim + 2, cub, 'C');
-            free(cub->map_content[i]);
-            cub->map_content[i] = ft_strdup("");
-        }
-        free(trim);
+        ft_norm_25_2(trim, cub, i, &j);
+        fre(trim);
+        trim = NULL;
     }
+    if (trim)
+        fre(trim);
     check_color_num(j, cub);
 }

@@ -56,8 +56,9 @@ int	main(int ac, char **av)
 		printf("playerx --> %i\n", cub.player_x);
 		printf("playery --> %i\n", cub.player_y);
 	}
-	void *mlx = mlx_init();
-	void *win = mlx_new_window(mlx, HEIGHT, WIDTH, "CUB3D");
-	mlx_key_hook(win, print, NULL);
-	mlx_loop(mlx);
+	free_all_map(&cub);
+	// void *mlx = mlx_init();
+	// void *win = mlx_new_window(mlx, HEIGHT, WIDTH, "CUB3D");
+	// mlx_key_hook(win, print, NULL);
+	// mlx_loop(mlx);
 }

@@ -39,8 +39,8 @@ typedef struct color
 typedef struct cub
 {
 	char	*content;
-	char	**map_content;
-	char 	*textures_path[4];
+	char	**map_content; // to free
+	char 	*textures_path[4]; // to free
 	t_color	floor_color;
 	t_color	ceiling_color;
 	int		player_x;
@@ -56,11 +56,25 @@ char		*parse_texture(char *line);
 void		check_colors(t_cub *cub);
 void		is_valid_map(t_cub *cub);
 void		check_side_borders(t_cub *cub);
-void    	check_other_char(char **map);
+int			check_char(char c);
+int    		check_other_char(char **map);
 void		check_map(t_cub*cub);
 void		check_player_position(t_cub *cub);
+int 		is_all_whitespaces(char *str);
 void    	check_textures(t_cub *cub);
+void    	assign_color(t_cub *cub, char **split, char c);
+void    	ft_norm_25_2(char *trim, t_cub *cub, int i, int *j);
+void    	check_rgb(int *j, char *str, t_cub *cub, char c, char *to_free);
+void    	adjust_map(t_cub *cub);
+int 		size_map(char **map);
+void    	switch_spaces(t_cub *cub);
+void    	adjust_length(t_cub *cub);
+void    	check_player_spaces_position(t_cub *cub);
 
 void		free_2d(char **str);
+void		free_all_map(t_cub *cub);
+void		fre(char *str);
+int			array_size(char **str);
+char		*new_string(char a, int size);
 
 #endif
