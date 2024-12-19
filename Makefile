@@ -1,15 +1,11 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 LIBFT = libft/libft.a
 GNL = gnl/gnl
-SRC = ./src/main.c ./src/parsing/parsing.c ./src/parsing/utils.c ./src/parsing/check_map.c ./src/parsing/parse_map.c  ./src/parsing/parse_textures.c ./src/parsing/parse_colors.c
-OBJ_DIR = obj
-OBJ = $(SRC:src/%.c=$(OBJ_DIR)/%.o)
+SRC = ./src/main.c ./src/parsing.c ./src/utils.c ./src/check_map.c ./src/parse_map.c ./src/parse_textures.c ./src/parse_colors.c ./src/colors_utils.c ./src/map_utils.c ./src/player.c
 
-$(OBJ_DIR)/%.o: src/%.c
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+OBJ = $(SRC:%.c=%.o)
 
 all: $(GNL) $(LIBFT) $(NAME) 
 
@@ -27,7 +23,7 @@ $(NAME): $(OBJ)
 clean:
 	make clean -C libft
 	make clean -C gnl
-	rm -rf $(OBJ_DIR) 
+	rm -rf $(OBJ) 
 
 fclean: clean
 	make fclean -C libft

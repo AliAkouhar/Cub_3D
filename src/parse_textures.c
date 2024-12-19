@@ -1,4 +1,4 @@
-# include "../../headers/cub3d.h"
+# include "../headers/cub3d.h"
 
 void    error_textures(t_cub *cub, int j)
 {
@@ -7,7 +7,7 @@ void    error_textures(t_cub *cub, int j)
 
     if (!cub->textures_path[NORTH] || !cub->textures_path[SOUTH] || !cub->textures_path[EAST] || !cub->textures_path[WEST] || j != 4)
     {
-        //free the map and textures
+        free_all_map(cub);
         exit(printf("Error\nWrong Number of textures\n"));
     }
     i = 0;
@@ -16,7 +16,7 @@ void    error_textures(t_cub *cub, int j)
         fd = open(cub->textures_path[i], O_RDONLY);
         if (fd < 0)
         {
-            //free the map and textures
+            free_all_map(cub);
             exit(printf("Error\nInvalid texture path\n"));
         }
         close(fd);
@@ -26,30 +26,36 @@ void    error_textures(t_cub *cub, int j)
 
 void    ft_norm_25(char *trim, t_cub *cub, int i)
 {
-    if (!ft_strncmp(trim, "SO ", 3) && !cub->textures_path[SOUTH])
+    if (!ft_strncmp(trim, "NO ", 3) && !cub->textures_path[NORTH])
+    {
+        cub->textures_path[NORTH] = ft_strtrim(trim + 3, " \t");
+        fre(cub->map_content[i]);
+        cub->map_content[i] = ft_strdup("");
+    }
+    else if (!ft_strncmp(trim, "SO ", 3) && !cub->textures_path[SOUTH])
     {
         cub->textures_path[SOUTH] = ft_strtrim(trim + 3, " \t");
-        free(cub->map_content[i]);
+        fre(cub->map_content[i]);
         cub->map_content[i] = ft_strdup("");
     }
     else if (!ft_strncmp(trim, "EA ", 3) && !cub->textures_path[EAST])
     {
         cub->textures_path[EAST] = ft_strtrim(trim + 3, " \t");
-        free(cub->map_content[i]);
+        fre(cub->map_content[i]);
         cub->map_content[i] = ft_strdup("");
     }
     else if (!ft_strncmp(trim, "WE ", 3) && !cub->textures_path[WEST])
     {
         cub->textures_path[WEST] = ft_strtrim(trim + 3, " \t");
-        free(cub->map_content[i]);
+        fre(cub->map_content[i]);
         cub->map_content[i] = ft_strdup("");
     }
 }
 
 void    check_textures(t_cub *cub)
 {
-    int i;
-    int j;
+    int     i;
+    int     j;
     char    *trim;
 
     i = -1;
@@ -61,15 +67,11 @@ void    check_textures(t_cub *cub)
             break;
         if (!ft_strncmp(trim, "NO ", 3) || !ft_strncmp(trim, "SO ", 3) || !ft_strncmp(trim, "EA ", 3) || !ft_strncmp(trim, "WE ", 3))
             j++;
-        if (!ft_strncmp(trim, "NO ", 3) && !cub->textures_path[NORTH])
-        {
-            cub->textures_path[NORTH] = ft_strtrim(trim + 3, " \t");
-            free(cub->map_content[i]);
-            cub->map_content[i] = ft_strdup("");
-        }
-        else
-            ft_norm_25(trim, cub, i);
-        free(trim);
+        ft_norm_25(trim, cub, i);
+        fre(trim);
+        trim = NULL;
     }
+    if (trim)
+        fre(trim);
     error_textures(cub, j);
 }
