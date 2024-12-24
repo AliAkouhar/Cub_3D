@@ -93,11 +93,11 @@ void    draw_player(t_cub *cub)
 void    update_player(int key, t_cub *cub)
 {
     if (key == 119)
-        cub->walkDirection += 0.5;
+        cub->walkDirection = 0.5;
     else if (key == 97)
-        cub->turnDirection -= 0.5;
+        cub->turnDirection = -0.5; 
     else if (key == 115)
-        cub->walkDirection -= 0.5;
+        cub->walkDirection = -0.5;
     else if (key == 100)
-        cub->turnDirection += 0.5;
+        cub->turnDirection = 0.5;
 }
