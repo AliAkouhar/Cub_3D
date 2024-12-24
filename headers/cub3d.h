@@ -63,11 +63,11 @@ typedef struct cub
 	int		size_line;
 	int		endian;
 	//
-	int		turnDirection;
-	int		walkDirection;
+	float		turnDirection;
+	float		walkDirection;
 	int		speed;
-	int		rotationAngle;
-	int		rotationSpeed;
+	float		rotationAngle;
+	float		rotationSpeed;
 }			t_cub;
 
 void		ft_parsing(t_cub *cub, int ac, char **av);

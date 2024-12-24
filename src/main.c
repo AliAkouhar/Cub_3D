@@ -62,6 +62,8 @@ int	main(int ac, char **av)
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
 	//
+	cub.player_x *= TILE;
+	cub.player_y *= TILE;
 	init_mlx(&cub);
 	draw_kbira(&cub);
 	draw_player(&cub);
