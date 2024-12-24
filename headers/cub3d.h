@@ -22,12 +22,22 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define HEIGHT 1500
-# define WIDTH 900
+# define HEIGHT 11 // 11
+# define WIDTH 15 // 15
+
+# define PI 3.14159265358979323846
+# define R_ANGLE PI / 2
+
+
+# define TILE 50
+
 # define NORTH 0
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+
+# define BLACK 0x00000000
+# define WHITE 0xFFFFFFFF
 
 typedef struct color
 {
@@ -43,8 +53,21 @@ typedef struct cub
 	char 	*textures_path[4]; // to free
 	t_color	floor_color;
 	t_color	ceiling_color;
-	int		player_x;
-	int		player_y;
+	float	player_x;
+	float	player_y;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	void	*add;
+	int		bit_per_pixel;
+	int		size_line;
+	int		endian;
+	//
+	int		turnDirection;
+	int		walkDirection;
+	int		speed;
+	int		rotationAngle;
+	int		rotationSpeed;
 }			t_cub;
 
 void		ft_parsing(t_cub *cub, int ac, char **av);
@@ -70,6 +93,13 @@ int 		size_map(char **map);
 void    	switch_spaces(t_cub *cub);
 void    	adjust_length(t_cub *cub);
 void    	check_player_spaces_position(t_cub *cub);
+void    	init_mlx(t_cub *cub);
+
+
+void    	draw_kbira(t_cub *cub);
+void		my_mlx_pixel_put(t_cub *cub, int color, float x, float y);
+void    	draw_player(t_cub *cub);
+void    	update_player(int key, t_cub *cub);
 
 void		free_2d(char **str);
 void		free_all_map(t_cub *cub);

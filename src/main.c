@@ -26,14 +26,33 @@ void	init_cub(t_cub *cub)
 	cub->ceiling_color.r = -1;
 	cub->ceiling_color.g = -1;
 	cub->ceiling_color.b = -1;
+	cub->turnDirection = 0;
+	cub->walkDirection = 0;
+	cub->speed = 2;
+	cub->rotationAngle = PI / 2;
+	cub->rotationSpeed = 2 * (PI / 180);
 }
 
-int	print(int key, void *p)
+int	print(int key, t_cub *cub)
 {
-	(void)p;
-
 	printf("key --> %i\n", key);
+	if (key == 65307)
+		exit(0);
+	if (key ==  119 || key == 97 || key == 115 || key == 100)
+	{
+		mlx_clear_window(cub->mlx, cub->win);
+		update_player(key, cub);
+		draw_kbira(cub);
+		draw_player(cub);
+	}
 	return 0;
+}
+
+int	print2(int mouse, int x, int y, t_cub *cub)
+{
+	(void)mouse;
+	printf("mouse --> %c\n", cub->map_content[y / TILE][x / TILE]);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -56,11 +75,11 @@ int	main(int ac, char **av)
 	// 	printf("playerx --> %i\n", cub.player_x);
 	// 	printf("playery --> %i\n", cub.player_y);
 	// }
-
-	free_all_map(&cub);
-	void *mlx = mlx_init();
-	void *win = mlx_new_window(mlx, HEIGHT, WIDTH, "CUB3D");
-	void draw_mini_map();
-	mlx_key_hook(win, print, NULL);
-	mlx_loop(mlx);
+	// free_all_map(&cub);
+	init_mlx(&cub);
+	draw_kbira(&cub);
+	draw_player(&cub);
+	mlx_key_hook(cub.win, print, &cub);
+	mlx_mouse_hook(cub.win,print2, &cub);
+	mlx_loop(cub.mlx);
 }

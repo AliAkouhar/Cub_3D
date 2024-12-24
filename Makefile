@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 LIBFT = libft/libft.a
 GNL = gnl/gnl
-SRC = ./src/main.c ./src/parsing.c ./src/utils.c ./src/check_map.c ./src/parse_map.c ./src/parse_textures.c ./src/parse_colors.c ./src/colors_utils.c ./src/map_utils.c ./src/player.c
+SRC = ./src/main.c ./src/parsing/parsing.c ./src/parsing/utils.c ./src/parsing/check_map.c ./src/parsing/parse_map.c ./src/parsing/parse_textures.c ./src/parsing/parse_colors.c ./src/parsing/colors_utils.c ./src/parsing/map_utils.c ./src/player.c ./src/init_mlx.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -17,7 +17,7 @@ $(LIBFT):
 	make bonus -C libft
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(CFLAGS) $(GNL) $(LIBFT) -L headers/minilibx-linux -lmlx -lXext -lX11 -o $(NAME)
+	$(CC) $(OBJ) $(CFLAGS) $(GNL) $(LIBFT) -L headers/minilibx-linux -lmlx -lXext -lX11 -lm -o $(NAME)
 	#@make clean
 
 clean:
