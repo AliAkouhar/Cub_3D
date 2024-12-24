@@ -1,4 +1,4 @@
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 void    error_textures(t_cub *cub, int j)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "../../headers/cub3d.h"
 
 int is_all_whitespaces(char *str)
 {

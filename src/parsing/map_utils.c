@@ -1,4 +1,4 @@
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 int size_map(char **map)
 {
@@ -96,13 +96,13 @@ void    adjust_length(t_cub *cub)
     new_str = NULL;
     while (cub->map_content[++i])
         if (max < (int)ft_strlen(cub->map_content[i]))
-            max = ft_strlen(cub->map_content[i]) + 1;
+            max = ft_strlen(cub->map_content[i]);
     i = -1;
     while (cub->map_content[++i])
         if ((int)ft_strlen(cub->map_content[i]) < max)
         {
             tmp = cub->map_content[i];
-            new_str = new_string('a', max - ft_strlen(cub->map_content[i]) + 1);
+            new_str = new_string('a', max - ft_strlen(cub->map_content[i]));
             cub->map_content[i] = ft_strjoin(cub->map_content[i], new_str);
             fre(tmp);
             fre(new_str);

@@ -1,4 +1,4 @@
-# include "../headers/cub3d.h"
+# include "../../headers/cub3d.h"
 
 void    assign_color(t_cub *cub, char **split, char c)
 {
