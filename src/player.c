@@ -15,7 +15,7 @@ void    check_player_spaces_position(t_cub *cub)
                 if (cub->map_content[i][j + 1] == 'a' || cub->map_content[i][j - 1] == 'a' ||
                     cub->map_content[i + 1][j] == 'a' || cub->map_content[i - 1][j] == 'a')
                     {
-                        printf("Error\nPlayer position %i-- %s\n", i + 1, cub->map_content[i]);
+                        printf("Error\nPlayer position\n");
                         free_all_map(cub);
                         exit(1);
                     }
@@ -27,24 +27,36 @@ void    player(t_cub *cub, int tile)
 {
     int     i;
     int     j;
-    float     moveStep;
+    float   moveStep;
+    float   newPosX;
+    float   newPosY;
+    int     mapX;
+    int     mapY;
 
-    printf("turn ->%f\n", cub->turnDirection);
-    printf("walk ->%f\n", cub->walkDirection);
+    // printf("\n ----turn ->%f\n", cub->turnDirection);
+    // printf("\n ----walk ->%f\n", cub->walkDirection);
 
     cub->rotationAngle += cub->turnDirection * cub->rotationSpeed;
-    // printf("rota --> %f, %f, %f\n", cub->rotationAngle, cub->turnDirection, cub->rotationSpeed);
-
     moveStep = cub->walkDirection * cub->speed;
-    cub->player_x += cos(cub->rotationAngle) * moveStep;
-    cub->player_y += sin(cub->rotationAngle) * moveStep;
+    //
+    newPosX = cub->player_x + cos(cub->rotationAngle) * moveStep;
+    newPosY = cub->player_y + sin(cub->rotationAngle) * moveStep;
+    mapX = ceil(newPosX / TILE);
+    mapY = ceil(newPosY / TILE);
+    printf("char --> %c --> x %i y %i\n\n", cub->map_content[mapY - 1][mapX - 1], mapX, mapY);
+    if (mapX >= 0 && mapX < WIDTH && mapY >= 0 && mapY < HEIGHT &&
+        cub->map_content[mapY - 1][mapX - 1] != '1')
+    {
+        cub->player_x = newPosX;
+        cub->player_y = newPosY;
+    }
     i = 0;
     while (i < tile)
     {
         j = 0;
         while (j < tile)
         {
-                my_mlx_pixel_put(cub, 0x00FF00, cub->player_x + j, cub->player_y + i);
+            my_mlx_pixel_put(cub, 0x00FF00, cub->player_x + j, cub->player_y + i);
             j++;
         }
         i++;
@@ -53,24 +65,35 @@ void    player(t_cub *cub, int tile)
 
 void    line(t_cub *cub, float x0, float y0, float x1, float y1)
 {
-    int  i;
-
-    i = y0;
-    (void)x1;
-    while (i < y1)
+    float dx;
+    float dy;
+    float steps;
+    float xIncrement;
+    float yIncrement;
+    
+    dx = x1 - x0;
+    dy = y1 - y0;
+    if (fabs(dx) > fabs(dy))
+        steps = fabs(dx);
+    else
+        steps = fabs(dy);
+    xIncrement = dx / steps;
+    yIncrement = dy / steps;
+    for (int i = 0; i <= steps; i++)
     {
-        my_mlx_pixel_put(cub, 0xFF0000, x0, i);
-        i++;
+        my_mlx_pixel_put(cub, 0x00FF00, round(x0), round(y0));
+        x0 += xIncrement;
+        y0 += yIncrement;
     }
 }
 
 void    draw_player(t_cub *cub)
 {
-    player(cub, 10);
-    line(cub, cub->player_x + 5,
-        cub->player_y + 5,
-        cub->player_x + (cos(cub->rotationAngle) * TILE),
-        cub->player_y + (sin(cub->rotationAngle) * TILE));
+    player(cub, 20);
+    line(cub, cub->player_x + 10,
+        cub->player_y + 10,
+        (cub->player_x + 10) + (cos(cub->rotationAngle) * TILE),
+        (cub->player_y + 10) + (sin(cub->rotationAngle) * TILE));
         
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
     cub->walkDirection = 0;
@@ -80,11 +103,11 @@ void    draw_player(t_cub *cub)
 void    update_player(int key, t_cub *cub)
 {
     if (key == 119)
-        cub->walkDirection = 4;
+        cub->walkDirection = 10;
     else if (key == 97)
-        cub->turnDirection = -4;
+        cub->turnDirection = 4;
     else if (key == 115)
         cub->walkDirection = -4;
     else if (key == 100)
-        cub->turnDirection = 4;
+        cub->turnDirection = -10;
 }
