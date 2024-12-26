@@ -47,7 +47,7 @@ void    rectangle(int x, int y, int color, t_cub *cub)
     }
 }
 
-void    draw_kbira(t_cub *cub)
+void    draw_big_map(t_cub *cub)
 {
     int i;
     int j;
@@ -72,4 +72,5 @@ void    draw_kbira(t_cub *cub)
         }
         i++;
     }
+    draw_player(cub);
 }

@@ -97,7 +97,7 @@ void    	check_player_spaces_position(t_cub *cub);
 void    	init_mlx(t_cub *cub);
 
 
-void    	draw_kbira(t_cub *cub);
+void    	draw_big_map(t_cub *cub);
 void		my_mlx_pixel_put(t_cub *cub, int color, float x, float y);
 void    	draw_player(t_cub *cub);
 void    	update_player(int key, t_cub *cub);
@@ -107,6 +107,14 @@ void		free_all_map(t_cub *cub);
 void		fre(char *str);
 int			array_size(char **str);
 char		*new_string(char a, int size);
+int 		key_release(int key, t_cub* cub);
+int			print2(int mouse, int x, int y, t_cub *cub);
+int			ft_close(t_cub *cub);
+int			key_press(int key, t_cub *cub);
+
+
+
+
 
 
 #endif

@@ -30,40 +30,8 @@ void	init_cub(t_cub *cub)
 	cub->walkDirection = 0;
 	cub->leftRight = 0;
 	cub->speed = 2.0;
-	cub->rotationAngle = PI / 3;
+	cub->rotationAngle = PI / 2;
 	cub->rotationSpeed = 2 * (PI / 180);
-}
-
-int	print(int key, t_cub *cub)
-{
-	printf("key --> %i\n", key);
-	if (key == 65307)
-		exit(0);
-	if (key ==  119 || key == 97 || key == 115 || key == 100 || key == 65363 || key == 65361)
-	{
-		mlx_clear_window(cub->mlx, cub->win);
-		update_player(key, cub);
-		draw_kbira(cub);
-		draw_player(cub);
-	}
-	return 0;
-}
-
-int	print2(int mouse, int x, int y, t_cub *cub)
-{
-	(void)mouse;
-	(void)x; 
-	(void)y;
-	(void)cub;
-	// printf("mouse --> %c\n", cub->map_content[y / TILE][x / TILE]);
-	return (0);
-}
-
-int	ft_close(t_cub *cub)
-{
-	(void)cub;
-	printf("Closing the window..\n");
-	exit(0);
 }
 
 int	main(int ac, char **av)
@@ -78,10 +46,10 @@ int	main(int ac, char **av)
 	cub.player_x = (cub.player_x * TILE) + TILE / 2;
 	cub.player_y = (cub.player_y * TILE) + TILE / 2;
 	init_mlx(&cub);
-	draw_kbira(&cub);
-	draw_player(&cub);
-	mlx_key_hook(cub.win, print, &cub);
+	draw_big_map(&cub);
 	mlx_mouse_hook(cub.win,print2, &cub);
-	mlx_hook(cub.win, 17, (1L<<0), ft_close, &cub);
+	mlx_hook(cub.win, 17, (1L<<0), ft_close, &cub); // also to search
+	mlx_hook(cub.win, 2, 1L<<0, key_press, &cub); // to search
+	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub);
 	mlx_loop(cub.mlx);
 }

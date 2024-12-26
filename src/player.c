@@ -97,11 +97,7 @@ void    draw_player(t_cub *cub)
         cub->player_y + 5,
         (cub->player_x + 5) + (cos(cub->rotationAngle) * TILE),
         (cub->player_y + 5) + (sin(cub->rotationAngle) * TILE));
-        
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
-    cub->walkDirection = 0;
-    cub->turnDirection = 0;
-    cub->leftRight = 0;
 }
 
 void    update_player(int key, t_cub *cub)
