@@ -35,7 +35,7 @@ void	init_cub(t_cub *cub)
 
 int	print(int key, t_cub *cub)
 {
-	printf("key --> %i\n", key);
+	// printf("key --> %i\n", key);
 	if (key == 65307)
 		exit(0);
 	if (key ==  119 || key == 97 || key == 115 || key == 100)
@@ -51,7 +51,10 @@ int	print(int key, t_cub *cub)
 int	print2(int mouse, int x, int y, t_cub *cub)
 {
 	(void)mouse;
-	printf("mouse --> %c\n", cub->map_content[y / TILE][x / TILE]);
+	(void)x; 
+	(void)y;
+	(void)cub;
+	// printf("mouse --> %c\n", cub->map_content[y / TILE][x / TILE]);
 	return (0);
 }
 
@@ -61,9 +64,11 @@ int	main(int ac, char **av)
 
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
-	//
-	cub.player_x *= TILE;
-	cub.player_y *= TILE;
+	// //
+	// cub.player_x *= TILE;
+	// cub.player_y *= TILE;
+	cub.player_x = (cub.player_x * TILE) + TILE / 2;
+	cub.player_y = (cub.player_y * TILE) + TILE / 2;
 	init_mlx(&cub);
 	draw_kbira(&cub);
 	draw_player(&cub);

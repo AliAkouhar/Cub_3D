@@ -29,7 +29,7 @@
 # define R_ANGLE PI / 2
 
 
-# define TILE 50
+# define TILE 100
 
 # define NORTH 0
 # define SOUTH 1
