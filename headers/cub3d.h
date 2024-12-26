@@ -29,7 +29,7 @@
 # define R_ANGLE PI / 2
 
 
-# define TILE 100
+# define TILE 50
 
 # define NORTH 0
 # define SOUTH 1
@@ -65,9 +65,10 @@ typedef struct cub
 	//
 	float		turnDirection;
 	float		walkDirection;
-	int		speed;
+	float		speed;
 	float		rotationAngle;
 	float		rotationSpeed;
+	float		leftRight;
 }			t_cub;
 
 void		ft_parsing(t_cub *cub, int ac, char **av);
@@ -106,5 +107,6 @@ void		free_all_map(t_cub *cub);
 void		fre(char *str);
 int			array_size(char **str);
 char		*new_string(char a, int size);
+
 
 #endif
