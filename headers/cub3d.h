@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiima <tiima@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/16 15:43:35 by tiima            ###   ########.fr       */
+/*   Updated: 2024/12/27 14:58:01 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,15 @@
 
 # define HEIGHT 11 // 11
 # define WIDTH 15 // 15
+# define TILE 50
 
 # define PI 3.14159265358979323846
-# define R_ANGLE PI / 2
+# define R_ANGLE (PI / 2)
+# define WALL_STRIP_WIDTH 1
+# define NUMBER_OF_RAYS ((WIDTH * TILE) / WALL_STRIP_WIDTH)
+# define LINE_SIZE 100
 
 
-# define TILE 50
 
 # define NORTH 0
 # define SOUTH 1
@@ -46,6 +49,19 @@ typedef struct color
 	int		b;
 }			t_color;
 
+typedef	struct	s_player
+{
+	float	player_x;
+	float	player_y;
+	float	turnDirection;
+	float	walkDirection;
+	float	leftRight;
+	float	speed;
+	float	FOV_angle;
+	float	rotationAngle;
+	float	rotationSpeed;
+}	t_player;
+
 typedef struct cub
 {
 	char	*content;
@@ -53,8 +69,7 @@ typedef struct cub
 	char 	*textures_path[4]; // to free
 	t_color	floor_color;
 	t_color	ceiling_color;
-	float	player_x;
-	float	player_y;
+	t_player	player;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -63,12 +78,6 @@ typedef struct cub
 	int		size_line;
 	int		endian;
 	//
-	float		turnDirection;
-	float		walkDirection;
-	float		speed;
-	float		rotationAngle;
-	float		rotationSpeed;
-	float		leftRight;
 }			t_cub;
 
 void		ft_parsing(t_cub *cub, int ac, char **av);
@@ -101,6 +110,7 @@ void    	draw_big_map(t_cub *cub);
 void		my_mlx_pixel_put(t_cub *cub, int color, float x, float y);
 void    	draw_player(t_cub *cub);
 void    	update_player(int key, t_cub *cub);
+void	    line(t_cub *cub, float x0, float y0, float x1, float y1);
 
 void		free_2d(char **str);
 void		free_all_map(t_cub *cub);
@@ -111,7 +121,7 @@ int 		key_release(int key, t_cub* cub);
 int			print2(int mouse, int x, int y, t_cub *cub);
 int			ft_close(t_cub *cub);
 int			key_press(int key, t_cub *cub);
-
+void    	cast_all_rays(t_cub *cub);
 
 
 

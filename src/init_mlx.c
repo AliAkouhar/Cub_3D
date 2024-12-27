@@ -36,12 +36,21 @@ void    rectangle(int x, int y, int color, t_cub *cub)
     i = 0;
     while (i < TILE)
     {
-        j = 0;
+        my_mlx_pixel_put(cub, BLACK, x, y + i);
+        j = 1;
         while (j < TILE)
         {
             my_mlx_pixel_put(cub, color, x + j, y + i);
-            // mlx_pixel_put(cub->mlx, cub->win, x + j, y + i, color);
             j++;
+        }
+        j = 0;
+        if (i == 0)
+        {
+            while (j < TILE)
+            {
+                my_mlx_pixel_put(cub, BLACK, x + j, y + i);
+                j++;
+            }
         }
         i++;
     }
@@ -72,5 +81,7 @@ void    draw_big_map(t_cub *cub)
         }
         i++;
     }
+    // printf("\nBefore player: \n r_angle %f -- fov %f ---- turn %f --- x %f ----- y %f\n\n", cub->player.rotationAngle, cub->player.FOV_angle, cub->player.turnDirection, cub->player.player_x, cub->player.player_y);
+    // printf("\n\n\nAfter player: \n r_angle %f -- fov %f ---- turn %f --- x %f ----- y %f\n\n", cub->player.rotationAngle, cub->player.FOV_angle, cub->player.turnDirection, cub->player.player_x, cub->player.player_y);
     draw_player(cub);
 }

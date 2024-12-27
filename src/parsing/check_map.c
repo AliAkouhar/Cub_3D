@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 09:57:49 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/09/10 14:29:48 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/27 11:08:53 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,6 @@ void	check_top_buttom_borders(t_cub *cub)
 
 void	is_valid_map(t_cub *cub)
 {
-	// int		i;
-	// char	*tmp;
-
-	// i = -1;
-	// while (cub->map_content[++i])
-	// {
-	// 	tmp = cub->map_content[i];
-	// 	cub->map_content[i] = ft_strtrim(cub->map_content[i], " \t");
-	// 	fre(tmp);
-	// }
 	check_top_buttom_borders(cub);
 	check_side_borders(cub);
     switch_spaces(cub);
