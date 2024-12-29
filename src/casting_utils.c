@@ -5,14 +5,16 @@ float   getDistance(float x1, float y1, float x2, float y2)
     return (sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1))));
 }
 
-bool    isAWall(t_cub *cub, t_point point)
+bool    isAWall(t_cub *cub, t_point point, char c, t_ray ray)
 {
     int x;
     int y;
 
+    if (c == 'h' && ray.isRayUp)
+        point.y--;
     x = floor(point.x / TILE);
     y = floor(point.y / TILE);
-    if (cub->map_content[y][x--] == '1')
+    if (cub->map_content[y][x] == '1')
         return (true);
     return (false);
 }
@@ -35,7 +37,7 @@ t_point vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
         step.y *= -1;
     while (firstInter.x >= 0 && firstInter.x <= WIDTH * TILE && firstInter.y >= 0 && firstInter.y <= HEIGHT * TILE)
     {
-        if (isAWall(cub, firstInter))
+        if (isAWall(cub, firstInter, 'h', ray))
             return (firstInter);
         else
         {
