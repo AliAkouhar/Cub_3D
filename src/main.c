@@ -41,8 +41,8 @@ int	main(int ac, char **av)
 
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
-	cub.player.point.x = (cub.player.point.x * TILE) + TILE / 2;
-	cub.player.point.y = (cub.player.point.y * TILE) + TILE / 2;
+	cub.player.point.x = (cub.player.point.x * TILE);
+	cub.player.point.y = (cub.player.point.y * TILE);
 	init_mlx(&cub);
 	draw_big_map(&cub);
 	mlx_mouse_hook(cub.win, print2, &cub);

@@ -2,7 +2,7 @@
 
 int	key_press(int key, t_cub *cub)
 {
-	// printf("key --> %i\n", key);
+	printf("key --> %i\n", key);
 	if (key == 65307)
 		ft_close(cub);
 	if (key ==  119 || key == 97 || key == 115 || key == 100 || key == 65363 || key == 65361)
@@ -25,9 +25,9 @@ void    update_player(int key, t_cub *cub)
     else if (key == 100) // D
         cub->player.leftRight = 4;
     else if (key == 65363) // -> right
-        cub->player.turnDirection = -4;
+        cub->player.turnDirection = +4;
     else if (key == 65361) // <- left
-        cub->player.turnDirection = 4;
+        cub->player.turnDirection = -4;
 }
 
 int	print2(int mouse, int x, int y, t_cub *cub)

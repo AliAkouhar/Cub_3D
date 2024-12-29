@@ -25,7 +25,7 @@
 
 # define HEIGHT 11 // 11
 # define WIDTH 15 // 15
-# define TILE 90
+# define TILE 60
 
 # define PI 3.14159265358979323846
 # define WALL_STRIP_WIDTH 1
