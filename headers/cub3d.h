@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 12:15:55 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 15:17:40 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 # define HEIGHT 11 // 11
 # define WIDTH 15 // 15
@@ -40,6 +41,13 @@
 
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
+
+typedef struct ray{
+	bool	isRayUp;
+	bool	isRayDown;
+	bool	isRayLeft;
+	bool	isRayRight;
+}	t_ray;
 
 typedef struct color
 {
@@ -127,6 +135,9 @@ int			ft_close(t_cub *cub);
 int			key_press(int key, t_cub *cub);
 void    	cast_all_rays(t_cub *cub);
 void    	normalizing(float *rayAngle);
+t_point		vertical_intersection(t_cub *cub, t_ray ray, float rayAngle);
+void    	ray_direction(t_ray *ray, float rayAngle);
+float   	getDistance(float x1, float y1, float x2, float y2);
 
 
 
