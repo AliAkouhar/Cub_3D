@@ -12,6 +12,8 @@ bool    isAWall(t_cub *cub, t_point point, char c, t_ray ray)
 
     if (c == 'h' && ray.isRayUp)
         point.y--;
+    if (c == 'v' && ray.isRayLeft)
+        point.x--;
     x = floor(point.x / TILE);
     y = floor(point.y / TILE);
     if (cub->map_content[y][x] == '1')
@@ -21,13 +23,14 @@ bool    isAWall(t_cub *cub, t_point point, char c, t_ray ray)
 
 t_point vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
 {
-    t_point firstInter;
+    t_point inter;
     t_point step;
 
     // coordonee of the first vertical intersection
-    firstInter.x = floor(cub->player.point.x / TILE) * TILE;
-    firstInter.y = cub->player.point.y + ((firstInter.x - cub->player.point.x) * tan(rayAngle));
-
+    inter.x = floor(cub->player.point.x / TILE) * TILE;
+    if (ray.isRayRight)
+        inter.x += TILE;
+    inter.y = cub->player.point.y + ((inter.x - cub->player.point.x) * tan(rayAngle));
     // xstep and ystep coordonee
     step.x = TILE;
     if (ray.isRayLeft)
@@ -35,17 +38,17 @@ t_point vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
     step.y = TILE * tan(rayAngle);
     if ((ray.isRayUp && step.y > 0) || (ray.isRayDown && step.y < 0))
         step.y *= -1;
-    while (firstInter.x >= 0 && firstInter.x <= WIDTH * TILE && firstInter.y >= 0 && firstInter.y <= HEIGHT * TILE)
+    while (inter.x >= 0 && inter.x <= WIDTH * TILE && inter.y >= 0 && inter.y <= HEIGHT * TILE)
     {
-        if (isAWall(cub, firstInter, 'h', ray))
-            return (firstInter);
+        if (isAWall(cub, inter, 'v', ray))
+            return (inter);
         else
         {
-            firstInter.x += step.x;
-            firstInter.y += step.y;
+            inter.x += step.x;
+            inter.y += step.y;
         }
     }
-    return (firstInter);
+    return (inter);
 }
 
 void    ray_direction(t_ray *ray, float rayAngle)

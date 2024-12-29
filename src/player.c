@@ -35,6 +35,7 @@ void    player(t_cub *cub, int tile)
     newPosY = cub->player.point.y + moveStepY * cub->player.speed;
     mapX = floor(newPosX / TILE);
     mapY = floor(newPosY / TILE);
+    printf("x %i //// y %i //// %c\n\n", mapX, mapY, cub->map_content[mapY][mapX]);
     if (mapX >= 0 && mapX < WIDTH && mapY >= 0 && mapY < HEIGHT &&
         cub->map_content[mapY][mapX] != '1')
     {
@@ -71,10 +72,10 @@ void    line(t_cub *cub, float x0, float y0, float x1, float y1)
 void    draw_player(t_cub *cub)
 {
     player(cub, 10);
-    // line(cub, cub->player.point.x + 5,
-    //     cub->player.point.y + 5,
-    //     (cub->player.point.x + 5) + (cos(cub->player.rotationAngle) * LINE_SIZE),
-    //     (cub->player.point.y + 5) + (sin(cub->player.rotationAngle) * LINE_SIZE));
+    line(cub, cub->player.point.x + 5,
+        cub->player.point.y + 5,
+        (cub->player.point.x + 5) + (cos(cub->player.rotationAngle) * LINE_SIZE),
+        (cub->player.point.y + 5) + (sin(cub->player.rotationAngle) * LINE_SIZE));
     cast_all_rays(cub);
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

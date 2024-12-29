@@ -28,22 +28,21 @@ t_point horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle)
 
 t_point    cast(t_cub *cub, float rayAngle)
 {
-    // t_point pHorizontal;
-    // t_point pVertical;
+    t_point pVertical;
     t_point pHorizontal;
-    // float   verticalDistance;
-    // float   horizantalDistance;
+    float   verticalDistance;
+    float   horizantalDistance;
     t_ray   ray;
     // HORIZONTAL INTERSECTION CODE "ALI" //
     ray_direction(&ray, rayAngle);
     pHorizontal = horizontal_intersection(cub, ray, rayAngle);
     // VERTICAL INTERSECTION CODE "TIIMA" //
 
-    // pVertical = vertical_intersection(cub, ray, rayAngle);
-    // verticalDistance = getDistance(cub->player.point.x, cub->player.point.y, pVertical.x, pVertical.y);
-    // horizantalDistance = getDistance(cub->player.point.x, cub->player.point.y,pHorizontal.x,pHorizontal.y);
-    // if (verticalDistance < horizantalDistance)
-        // return (pVertical);
+    pVertical = vertical_intersection(cub, ray, rayAngle);
+    verticalDistance = getDistance(cub->player.point.x, cub->player.point.y, pVertical.x, pVertical.y);
+    horizantalDistance = getDistance(cub->player.point.x, cub->player.point.y,pHorizontal.x,pHorizontal.y);
+    if (verticalDistance < horizantalDistance)
+        return (pVertical);
     return (pHorizontal);
 }
 
@@ -57,7 +56,7 @@ void    cast_all_rays(t_cub *cub)
     i = 0;
     rayAngle = cub->player.rotationAngle - (cub->player.FOV_angle / 2);
     rayIncrement = cub->player.FOV_angle / NUMBER_OF_RAYS;
-    while (i < NUMBER_OF_RAYS)
+    while (i < 50)
     {
         normalizing(&rayAngle);
         endPoint = cast(cub, rayAngle);
