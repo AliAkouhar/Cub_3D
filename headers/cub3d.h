@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 15:17:40 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 16:00:06 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void    	normalizing(float *rayAngle);
 t_point		vertical_intersection(t_cub *cub, t_ray ray, float rayAngle);
 void    	ray_direction(t_ray *ray, float rayAngle);
 float   	getDistance(float x1, float y1, float x2, float y2);
-
+bool    	isAWall(t_cub *cub, t_point point, char c, t_ray ray);
 
 
 
