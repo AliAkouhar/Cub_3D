@@ -4,7 +4,7 @@ int	key_press(int key, t_cub *cub)
 {
 	// printf("key --> %i\n", key);
 	if (key == 65307)
-		exit(0);
+		ft_close(cub);
 	if (key ==  119 || key == 97 || key == 115 || key == 100 || key == 65363 || key == 65361)
 	{
 		mlx_clear_window(cub->mlx, cub->win);
@@ -44,6 +44,11 @@ int	ft_close(t_cub *cub)
 {
 	(void)cub;
 	printf("Closing the window..\n");
+    mlx_destroy_image(cub->mlx, cub->img);
+    mlx_destroy_window(cub->mlx, cub->win);
+    mlx_destroy_display(cub->mlx);
+    free(cub->mlx);
+    free_all_map(cub);
 	exit(0);
 }
 

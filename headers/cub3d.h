@@ -27,10 +27,9 @@
 # define TILE 50
 
 # define PI 3.14159265358979323846
-# define R_ANGLE (PI / 2)
-# define WALL_STRIP_WIDTH 1
+# define WALL_STRIP_WIDTH 10
 # define NUMBER_OF_RAYS ((WIDTH * TILE) / WALL_STRIP_WIDTH)
-# define LINE_SIZE 100
+# define LINE_SIZE 300
 
 
 
@@ -64,19 +63,19 @@ typedef	struct	s_player
 
 typedef struct cub
 {
-	char	*content;
-	char	**map_content; // to free
-	char 	*textures_path[4]; // to free
-	t_color	floor_color;
-	t_color	ceiling_color;
+	char		*content;
+	char		**map_content; // to free
+	char 		*textures_path[4]; // to free
+	t_color		floor_color;
+	t_color		ceiling_color;
 	t_player	player;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	void	*add;
-	int		bit_per_pixel;
-	int		size_line;
-	int		endian;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*add;
+	int			bit_per_pixel;
+	int			size_line;
+	int			endian;
 	//
 }			t_cub;
 

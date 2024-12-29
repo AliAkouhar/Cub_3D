@@ -81,7 +81,5 @@ void    draw_big_map(t_cub *cub)
         }
         i++;
     }
-    // printf("\nBefore player: \n r_angle %f -- fov %f ---- turn %f --- x %f ----- y %f\n\n", cub->player.rotationAngle, cub->player.FOV_angle, cub->player.turnDirection, cub->player.player_x, cub->player.player_y);
-    // printf("\n\n\nAfter player: \n r_angle %f -- fov %f ---- turn %f --- x %f ----- y %f\n\n", cub->player.rotationAngle, cub->player.FOV_angle, cub->player.turnDirection, cub->player.player_x, cub->player.player_y);
     draw_player(cub);
 }

@@ -75,5 +75,6 @@ void    draw_player(t_cub *cub)
         cub->player.player_y + 5,
         (cub->player.player_x + 5) + (cos(cub->player.rotationAngle) * LINE_SIZE),
         (cub->player.player_y + 5) + (sin(cub->player.rotationAngle) * LINE_SIZE));
+    cast_all_rays(cub);
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }
