@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 11:10:58 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 12:15:55 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int			print2(int mouse, int x, int y, t_cub *cub);
 int			ft_close(t_cub *cub);
 int			key_press(int key, t_cub *cub);
 void    	cast_all_rays(t_cub *cub);
+void    	normalizing(float *rayAngle);
 
 
 
