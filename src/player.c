@@ -36,7 +36,7 @@ void    player(t_cub *cub, int tile)
     mapX = floor(newPosX / TILE);
     mapY = floor(newPosY / TILE);
     printf("x %i //// y %i //// %c\n\n", mapX, mapY, cub->map_content[mapY][mapX]);
-    if (mapX >= 0 && mapX < WIDTH && mapY >= 0 && mapY < HEIGHT &&
+    if (mapX >= 0 && mapX < cub->width && mapY >= 0 && mapY < cub->height &&
         cub->map_content[mapY][mapX] != '1')
     {
         cub->player.point.x = newPosX;

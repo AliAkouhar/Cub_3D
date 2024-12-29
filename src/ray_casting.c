@@ -16,7 +16,7 @@ t_point horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle)
     step_point.x = step_point.y / tan(rayAngle);
     if ((ray.isRayLeft && step_point.x > 0) || (ray.isRayRight && step_point.x < 0))
         step_point.x *= -1;
-    while (inter.x >= 0 && inter.x <= WIDTH * TILE && inter.y >= 0 && inter.y <= HEIGHT * TILE)
+    while (inter.x >= 0 && inter.x <= cub->width * TILE && inter.y >= 0 && inter.y <= cub->height * TILE)
     {
         if (isAWall(cub, inter, 'h', ray))
             return (inter);
@@ -56,7 +56,7 @@ void    cast_all_rays(t_cub *cub)
     i = 0;
     rayAngle = cub->player.rotationAngle - (cub->player.FOV_angle / 2);
     rayIncrement = cub->player.FOV_angle / NUMBER_OF_RAYS;
-    while (i < 50)
+    while (i < NUMBER_OF_RAYS)
     {
         normalizing(&rayAngle);
         endPoint = cast(cub, rayAngle);

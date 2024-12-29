@@ -5,8 +5,8 @@ void    init_mlx(t_cub *cub)
 	cub->mlx = mlx_init();
     if (!cub->mlx)
         exit(printf("Error\nInit_mlx\n"));
-    cub->win = mlx_new_window(cub->mlx, WIDTH * TILE, HEIGHT * TILE, "CUB3D");
-    cub->img = mlx_new_image(cub->mlx, WIDTH * TILE, HEIGHT * TILE);
+    cub->win = mlx_new_window(cub->mlx, cub->width * TILE, cub->height * TILE, "CUB3D");
+    cub->img = mlx_new_image(cub->mlx, cub->width * TILE, cub->height * TILE);
     cub->add = mlx_get_data_addr(cub->img, &cub->bit_per_pixel,
 			&cub->size_line, &cub->endian);
 }
@@ -15,7 +15,7 @@ void my_mlx_pixel_put(t_cub *cub, int color, float x, float y)
 {
     char *dst;
 
-    if (x < 0 || x >= (WIDTH * TILE) || y < 0 || y >= (HEIGHT * TILE))
+    if (x < 0 || x >= (cub->width * TILE) || y < 0 || y >= (cub->height * TILE))
         return;
     dst = cub->add + (((int)y * cub->size_line) + ((int)x * (cub->bit_per_pixel / 8)));
 
@@ -65,10 +65,10 @@ void    draw_big_map(t_cub *cub)
     int color;
 
     i = 0;
-    while (i < HEIGHT)
+    while (i < cub->height)
     {
         j = 0;
-        while (j < WIDTH)
+        while (j < cub->width)
         {
             tileX = j * TILE;
             tileY = i * TILE;

@@ -26,19 +26,17 @@ t_point vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
     t_point inter;
     t_point step;
 
-    // coordonee of the first vertical intersection
     inter.x = floor(cub->player.point.x / TILE) * TILE;
     if (ray.isRayRight)
         inter.x += TILE;
     inter.y = cub->player.point.y + ((inter.x - cub->player.point.x) * tan(rayAngle));
-    // xstep and ystep coordonee
     step.x = TILE;
     if (ray.isRayLeft)
         step.x *= -1;
     step.y = TILE * tan(rayAngle);
     if ((ray.isRayUp && step.y > 0) || (ray.isRayDown && step.y < 0))
         step.y *= -1;
-    while (inter.x >= 0 && inter.x <= WIDTH * TILE && inter.y >= 0 && inter.y <= HEIGHT * TILE)
+    while (inter.x >= 0 && inter.x <= cub->width * TILE && inter.y >= 0 && inter.y <= cub->height * TILE)
     {
         if (isAWall(cub, inter, 'v', ray))
             return (inter);

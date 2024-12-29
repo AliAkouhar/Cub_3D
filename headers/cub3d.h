@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 16:00:06 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 17:31:12 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,10 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-# define HEIGHT 11 // 11
-# define WIDTH 15 // 15
-# define TILE 90
+# define TILE 25
 
 # define PI 3.14159265358979323846
 # define WALL_STRIP_WIDTH 1
-# define NUMBER_OF_RAYS ((WIDTH * TILE) / WALL_STRIP_WIDTH)
 # define LINE_SIZE 200
 
 
@@ -89,8 +86,12 @@ typedef struct cub
 	int			bit_per_pixel;
 	int			size_line;
 	int			endian;
+	int			height;
+	int			width;
 	//
 }			t_cub;
+
+# define NUMBER_OF_RAYS ((cub->width * TILE) / WALL_STRIP_WIDTH)
 
 void		ft_parsing(t_cub *cub, int ac, char **av);
 void		is_extension(char *str);
