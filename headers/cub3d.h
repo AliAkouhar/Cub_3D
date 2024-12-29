@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/27 14:58:01 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 11:10:58 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 # define TILE 50
 
 # define PI 3.14159265358979323846
-# define WALL_STRIP_WIDTH 10
+# define WALL_STRIP_WIDTH 1
 # define NUMBER_OF_RAYS ((WIDTH * TILE) / WALL_STRIP_WIDTH)
-# define LINE_SIZE 300
+# define LINE_SIZE 200
 
 
 
@@ -48,10 +48,15 @@ typedef struct color
 	int		b;
 }			t_color;
 
+typedef struct point
+{
+	float	x;
+	float	y;
+}	t_point;
+
 typedef	struct	s_player
 {
-	float	player_x;
-	float	player_y;
+	t_point	point;
 	float	turnDirection;
 	float	walkDirection;
 	float	leftRight;

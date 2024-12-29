@@ -12,10 +12,10 @@ void    cast_all_rays(t_cub *cub)
     while (i < NUMBER_OF_RAYS)
     {
         line(cub,
-            cub->player.player_x + 5,
-            cub->player.player_y + 5,
-            cub->player.player_x + 5 + cos(ray_angle) * LINE_SIZE,
-            cub->player.player_y + 5 + sin(ray_angle) * LINE_SIZE
+            cub->player.point.x + 5,
+            cub->player.point.y + 5,
+            cub->player.point.x + 5 + cos(ray_angle) * LINE_SIZE,
+            cub->player.point.y + 5 + sin(ray_angle) * LINE_SIZE
         );
         ray_angle += ray_increment;
         i++;

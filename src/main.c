@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:41:52 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/27 15:03:27 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 11:05:04 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int ac, char **av)
 
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
-	cub.player.player_x = (cub.player.player_x * TILE) + TILE / 2;
-	cub.player.player_y = (cub.player.player_y * TILE) + TILE / 2;
+	cub.player.point.x = (cub.player.point.x * TILE) + TILE / 2;
+	cub.player.point.y = (cub.player.point.y * TILE) + TILE / 2;
 	init_mlx(&cub);
 	draw_big_map(&cub);
 	mlx_mouse_hook(cub.win, print2, &cub);

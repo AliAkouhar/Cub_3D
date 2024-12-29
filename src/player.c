@@ -11,7 +11,7 @@ void    draw_player_rectangle(t_cub *cub, int tile)
         j = 0;
         while (j < tile)
         {
-            my_mlx_pixel_put(cub, 0xFF0000, cub->player.player_x + j, cub->player.player_y + i);
+            my_mlx_pixel_put(cub, 0xFF0000, cub->player.point.x + j, cub->player.point.y + i);
             j++;
         }
         i++;
@@ -31,15 +31,15 @@ void    player(t_cub *cub, int tile)
     moveStepX = cos(cub->player.rotationAngle) * cub->player.walkDirection - sin(cub->player.rotationAngle) * cub->player.leftRight;
     moveStepY = sin(cub->player.rotationAngle) * cub->player.walkDirection + cos(cub->player.rotationAngle) * cub->player.leftRight;
 
-    newPosX = cub->player.player_x + moveStepX * cub->player.speed;
-    newPosY = cub->player.player_y + moveStepY * cub->player.speed;
+    newPosX = cub->player.point.x + moveStepX * cub->player.speed;
+    newPosY = cub->player.point.y + moveStepY * cub->player.speed;
     mapX = floor(newPosX / TILE);
     mapY = floor(newPosY / TILE);
     if (mapX >= 0 && mapX < WIDTH && mapY >= 0 && mapY < HEIGHT &&
         cub->map_content[mapY][mapX] != '1')
     {
-        cub->player.player_x = newPosX;
-        cub->player.player_y = newPosY;
+        cub->player.point.x = newPosX;
+        cub->player.point.y = newPosY;
     }
     draw_player_rectangle(cub, tile);
 }
@@ -71,10 +71,10 @@ void    line(t_cub *cub, float x0, float y0, float x1, float y1)
 void    draw_player(t_cub *cub)
 {
     player(cub, 10);
-    line(cub, cub->player.player_x + 5,
-        cub->player.player_y + 5,
-        (cub->player.player_x + 5) + (cos(cub->player.rotationAngle) * LINE_SIZE),
-        (cub->player.player_y + 5) + (sin(cub->player.rotationAngle) * LINE_SIZE));
+    line(cub, cub->player.point.x + 5,
+        cub->player.point.y + 5,
+        (cub->player.point.x + 5) + (cos(cub->player.rotationAngle) * LINE_SIZE),
+        (cub->player.point.y + 5) + (sin(cub->player.rotationAngle) * LINE_SIZE));
     cast_all_rays(cub);
     mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

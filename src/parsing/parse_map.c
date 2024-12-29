@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:47:59 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/27 11:09:19 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 11:09:39 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	check_player_position(t_cub *cub)
 				|| cub->map_content[i][j] == 'E' || cub->map_content[i][j] == 'W')
 			{
 				pos_count++;
-				cub->player.player_x = j;
-				cub->player.player_y = i;
+				cub->player.point.x = j;
+				cub->player.point.y = i;
 			}
 		}
 	}
