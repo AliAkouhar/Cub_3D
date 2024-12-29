@@ -33,15 +33,13 @@ t_point    cast(t_cub *cub, float rayAngle)
     float   verticalDistance;
     float   horizantalDistance;
     t_ray   ray;
-    // HORIZONTAL INTERSECTION CODE "ALI" //
+
     ray_direction(&ray, rayAngle);
     pHorizontal = horizontal_intersection(cub, ray, rayAngle);
-    // VERTICAL INTERSECTION CODE "TIIMA" //
-
     pVertical = vertical_intersection(cub, ray, rayAngle);
     verticalDistance = getDistance(cub->player.point.x, cub->player.point.y, pVertical.x, pVertical.y);
     horizantalDistance = getDistance(cub->player.point.x, cub->player.point.y,pHorizontal.x,pHorizontal.y);
-    if (verticalDistance < horizantalDistance)
+    if (verticalDistance <= horizantalDistance)
         return (pVertical);
     return (pHorizontal);
 }

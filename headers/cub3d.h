@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 17:31:12 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/29 18:48:26 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-# define TILE 25
+# define TILE 60
 
 # define PI 3.14159265358979323846
 # define WALL_STRIP_WIDTH 1
@@ -39,7 +39,8 @@
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
 
-typedef struct ray{
+typedef struct ray
+{
 	bool	isRayUp;
 	bool	isRayDown;
 	bool	isRayLeft;

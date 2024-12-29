@@ -30,9 +30,9 @@ void	is_extension(char *str)
 
 int	ft_get_size(char *str)
 {
-	int fd;
-	int	i;
-	char *helper;
+	int		fd;
+	int		i;
+	char	*helper;
 
 	i = 0;
 	fd = open(str, O_RDONLY);
@@ -49,7 +49,7 @@ int	ft_get_size(char *str)
 
 int	empty_file(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -63,9 +63,9 @@ int	empty_file(char **str)
 
 void	get_map(t_cub *cub, char *str)
 {
-	int fd;
-	int	i;
-	char *helper;
+	int		fd;
+	int		i;
+	char	*helper;
 
 	i = 0;
 	fd = open(str, O_RDONLY);
@@ -96,8 +96,8 @@ void	ft_parsing(t_cub *cub, int ac, char **av)
 		exit(printf("USAGE ERROR:\n./cub3D <map>.cub\n"));
 	is_extension(av[1]); // done
 	get_map(cub, av[1]); // done
-	check_textures(cub); //done
-	check_colors(cub); // done
+	check_textures(cub); // done
+	check_colors(cub);   // done
 	adjust_map(cub);
 	check_map(cub);
 	cub->height = array_size(cub->map_content);

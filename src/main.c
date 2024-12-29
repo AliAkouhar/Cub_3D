@@ -41,13 +41,13 @@ int	main(int ac, char **av)
 
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
-	cub.player.point.x = (cub.player.point.x * TILE) + TILE / 2;
-	cub.player.point.y = (cub.player.point.y * TILE) + TILE / 2;
+	cub.player.point.x = (cub.player.point.x * TILE);
+	cub.player.point.y = (cub.player.point.y * TILE);
 	init_mlx(&cub);
 	draw_big_map(&cub);
 	mlx_mouse_hook(cub.win, print2, &cub);
-	mlx_hook(cub.win, 17, (1L<<0), ft_close, &cub); // also to search
-	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub); // to search
+	mlx_hook(cub.win, 17, (1L << 0), ft_close, &cub); // also to search
+	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub);   // to search
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub);
 	mlx_loop(cub.mlx);
 }

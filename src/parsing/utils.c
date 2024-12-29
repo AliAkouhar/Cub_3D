@@ -53,7 +53,7 @@ void	free_2d(char **str)
 
 int	array_size(char **str)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])

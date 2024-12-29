@@ -23,7 +23,7 @@ int	check_char(char c)
 int	check_other_char(char **map)
 {
 	int	i;
-	int x;
+	int	x;
 
 	x = -1;
 	while (map[++x])
@@ -45,9 +45,10 @@ void	check_side_borders(t_cub *cub)
 	i = 0;
 	while (cub->map_content[i])
 	{
-		if ((cub->map_content[i][0] != '1' && cub->map_content[i][0] != ' ') || (cub->map_content[i][ft_strlen(cub->map_content[i])
-			- 1] != '1' && cub->map_content[i][ft_strlen(cub->map_content[i])
-			- 1] != ' '))
+		if ((cub->map_content[i][0] != '1' && cub->map_content[i][0] != ' ')
+			|| (cub->map_content[i][ft_strlen(cub->map_content[i]) - 1] != '1'
+				&& cub->map_content[i][ft_strlen(cub->map_content[i])
+				- 1] != ' '))
 		{
 			free_all_map(cub);
 			printf("Error\n");
@@ -60,8 +61,8 @@ void	check_side_borders(t_cub *cub)
 
 void	check_top_buttom_borders(t_cub *cub)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = -1;
@@ -75,7 +76,8 @@ void	check_top_buttom_borders(t_cub *cub)
 		;
 	j = -1;
 	while (cub->map_content[i - 1][++j])
-		if (cub->map_content[i - 1][j] != '1' && cub->map_content[i - 1][j] != ' ')
+		if (cub->map_content[i - 1][j] != '1' && cub->map_content[i
+			- 1][j] != ' ')
 		{
 			free_all_map(cub);
 			exit(printf("Error\nMap isn't closed by walls (B)\n"));
@@ -86,7 +88,7 @@ void	is_valid_map(t_cub *cub)
 {
 	check_top_buttom_borders(cub);
 	check_side_borders(cub);
-    switch_spaces(cub);
+	switch_spaces(cub);
 	check_player_position(cub);
 	adjust_length(cub);
 	check_player_spaces_position(cub);
