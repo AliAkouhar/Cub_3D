@@ -18,13 +18,13 @@ int	key_press(int key, t_cub *cub)
 void	update_player(int key, t_cub *cub)
 {
 	if (key == 119) // W
-		cub->player.walkDirection = 4;
+		cub->player.walkDirection = 1;
 	else if (key == 115) // S
-		cub->player.walkDirection = -4;
+		cub->player.walkDirection = -1;
 	else if (key == 97) // A
-		cub->player.leftRight = -4;
+		cub->player.leftRight = -1;
 	else if (key == 100) // D
-		cub->player.leftRight = 4;
+		cub->player.leftRight = 1;
 	else if (key == 65363) // -> right
 		cub->player.turnDirection = +4;
 	else if (key == 65361) // <- left

@@ -34,8 +34,8 @@ int	is_wall(t_cub *cub, float x, float y)
 		dy = -step;
 		while (dy <= step)
 		{
-			px = floor((x + dx) / TILE);
-			py = floor((y + dy) / TILE);
+			px = floor((x + dx) / cub->tile_map);
+			py = floor((y + dy) / cub->tile_map);
 			if (cub->map_content[py][px] == '1')
 				return (0);
 			dy += step;
@@ -93,7 +93,10 @@ void	line(t_cub *cub, float x0, float y0, float x1, float y1)
 
 void	draw_player(t_cub *cub)
 {
-	player(cub, 10);
+	int	player_tile;
+
+	player_tile = cub->tile_map / 5;
+	player(cub, player_tile);
 	line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
 		(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
 			* LINE_SIZE), (cub->player.point.y + 5)

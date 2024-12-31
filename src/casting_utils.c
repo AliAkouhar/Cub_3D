@@ -14,10 +14,11 @@ bool	isAWall(t_cub *cub, t_point point, char c, t_ray ray)
 		point.y--;
 	if (c == 'v' && ray.isRayLeft)
 		point.x--;
-	x = floor(point.x / TILE);
-	y = floor(point.y / TILE);
-	if (cub->map_content[y][x] == '1')
-		return (true);
+	x = floor(point.x / cub->tile_map);
+	y = floor(point.y / cub->tile_map);
+	if (x >= 0 && x < cub->width && y >= 0 && y < cub->height)
+		if (cub->map_content[y][x] == '1')
+			return (true);
 	return (false);
 }
 
@@ -26,27 +27,24 @@ t_point	vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
 	t_point	inter;
 	t_point	step;
 
-	inter.x = floor(cub->player.point.x / TILE) * TILE;
+	inter.x = floor(cub->player.point.x / cub->tile_map) * cub->tile_map;
 	if (ray.isRayRight)
-		inter.x += TILE;
+		inter.x += cub->tile_map;
 	inter.y = cub->player.point.y + ((inter.x - cub->player.point.x)
 			* tan(rayAngle));
-	step.x = TILE;
+	step.x = cub->tile_map;
 	if (ray.isRayLeft)
 		step.x *= -1;
-	step.y = TILE * tan(rayAngle);
+	step.y = cub->tile_map * tan(rayAngle);
 	if ((ray.isRayUp && step.y > 0) || (ray.isRayDown && step.y < 0))
 		step.y *= -1;
-	while (inter.x >= 0 && inter.x <= cub->width * TILE && inter.y >= 0
-		&& inter.y <= cub->height * TILE)
+	while (inter.x >= 0 && inter.x <= SCREEN_WIDTH && inter.y >= 0
+		&& inter.y <= SCREEN_HEIGHT)
 	{
 		if (isAWall(cub, inter, 'v', ray))
 			return (inter);
-		else
-		{
-			inter.x += step.x;
-			inter.y += step.y;
-		}
+		inter.x += step.x;
+		inter.y += step.y;
 	}
 	return (inter);
 }

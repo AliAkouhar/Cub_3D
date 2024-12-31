@@ -5,18 +5,18 @@ t_point horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle)
     t_point inter;
     t_point step_point;
 
-    inter.y = floor(cub->player.point.y / TILE) * TILE;
+    inter.y = floor(cub->player.point.y / cub->tile_map) * cub->tile_map;
     if (ray.isRayDown) // if the ray angle is facing down i should add a tile to ystep
-        inter.y += TILE;
+        inter.y += cub->tile_map;
     inter.x = cub->player.point.x + ((inter.y - cub->player.point.y) / tan(rayAngle));
-    step_point.y = TILE;
+    step_point.y = cub->tile_map;
     // Calculate the increment xstep and ystep
     if (ray.isRayUp)
         step_point.y *= -1;
     step_point.x = step_point.y / tan(rayAngle);
     if ((ray.isRayLeft && step_point.x > 0) || (ray.isRayRight && step_point.x < 0))
         step_point.x *= -1;
-    while (inter.x >= 0 && inter.x <= cub->width * TILE && inter.y >= 0 && inter.y <= cub->height * TILE)
+    while (inter.x >= 0 && inter.x <= SCREEN_WIDTH && inter.y >= 0 && inter.y <= SCREEN_HEIGHT)
     {
         if (isAWall(cub, inter, 'h', ray))
             return (inter);
@@ -52,6 +52,7 @@ void    cast_all_rays(t_cub *cub)
     t_point endPoint;
 
     i = 0;
+
     rayAngle = cub->player.rotationAngle - (cub->player.FOV_angle / 2);
     rayIncrement = cub->player.FOV_angle / NUMBER_OF_RAYS;
     while (i < NUMBER_OF_RAYS)

@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 18:48:26 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/31 09:19:09 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,12 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-# define TILE 60
-
 # define PI 3.14159265358979323846
 # define WALL_STRIP_WIDTH 1
 # define LINE_SIZE 200
 
-
+# define SCREEN_WIDTH 6000
+# define SCREEN_HEIGHT 440
 
 # define NORTH 0
 # define SOUTH 1
@@ -74,6 +73,7 @@ typedef	struct	s_player
 
 typedef struct cub
 {
+	int			tile_map;
 	char		*content;
 	char		**map_content; // to free
 	char 		*textures_path[4]; // to free
@@ -89,10 +89,11 @@ typedef struct cub
 	int			endian;
 	int			height;
 	int			width;
+	char		char_player;
 	//
 }			t_cub;
 
-# define NUMBER_OF_RAYS ((cub->width * TILE) / WALL_STRIP_WIDTH)
+# define NUMBER_OF_RAYS SCREEN_WIDTH / WALL_STRIP_WIDTH
 
 void		ft_parsing(t_cub *cub, int ac, char **av);
 void		is_extension(char *str);

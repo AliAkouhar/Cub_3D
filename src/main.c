@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:41:52 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 17:24:33 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/31 08:49:01 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_cub(t_cub *cub)
 	cub->player.turnDirection = 0;
 	cub->player.walkDirection = 0;
 	cub->player.leftRight = 0;
-	cub->player.speed = 2.0;
+	cub->player.speed = 3.0;
 	cub->player.FOV_angle = 60 * (PI / 180);
 	cub->player.rotationAngle = PI / 2;
 	cub->player.rotationSpeed = 2 * (PI / 180);
@@ -41,9 +41,11 @@ int	main(int ac, char **av)
 
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
-	cub.player.point.x = (cub.player.point.x * TILE);
-	cub.player.point.y = (cub.player.point.y * TILE);
+	cub.player.point.x = (cub.player.point.x * cub.tile_map);
+	cub.player.point.y = (cub.player.point.y * cub.tile_map);
 	init_mlx(&cub);
+	for (int i = 0; i < cub.height; i++)
+		printf("hello %s\n", cub.map_content[i]);
 	draw_big_map(&cub);
 	mlx_mouse_hook(cub.win, print2, &cub);
 	mlx_hook(cub.win, 17, (1L << 0), ft_close, &cub); // also to search

@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:44:29 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/29 17:22:35 by fbazaz           ###   ########.fr       */
+/*   Updated: 2024/12/31 08:45:19 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,8 @@ void	ft_parsing(t_cub *cub, int ac, char **av)
 	check_map(cub);
 	cub->height = array_size(cub->map_content);
 	cub->width = ft_strlen(cub->map_content[0]);
+	if (cub->height <= cub->width)
+		cub->tile_map = SCREEN_HEIGHT / cub->height;
+	else
+		cub->tile_map = SCREEN_WIDTH / cub->width;
 }
