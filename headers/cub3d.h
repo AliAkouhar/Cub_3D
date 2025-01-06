@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/31 09:19:09 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/06 08:41:00 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define WALL_STRIP_WIDTH 1
 # define LINE_SIZE 200
 
-# define SCREEN_WIDTH 6000
-# define SCREEN_HEIGHT 440
+# define SCREEN_WIDTH 1000
+# define SCREEN_HEIGHT 700
 
 # define NORTH 0
 # define SOUTH 1

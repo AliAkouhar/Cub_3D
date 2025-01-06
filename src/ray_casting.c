@@ -52,7 +52,6 @@ void    cast_all_rays(t_cub *cub)
     t_point endPoint;
 
     i = 0;
-
     rayAngle = cub->player.rotationAngle - (cub->player.FOV_angle / 2);
     rayIncrement = cub->player.FOV_angle / NUMBER_OF_RAYS;
     while (i < NUMBER_OF_RAYS)

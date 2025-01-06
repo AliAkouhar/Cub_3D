@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:41:52 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/31 08:49:01 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/06 08:33:26 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	main(int ac, char **av)
 {
 	t_cub	cub;
 
+	if (SCREEN_WIDTH < 0 || SCREEN_WIDTH > 1919 || SCREEN_HEIGHT < 0 || SCREEN_HEIGHT > 1000)
+		return (printf("Error\nIvalid SCREEN_WIDTH or SCREEN_HEIGHT\n"), 1);
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
 	cub.player.point.x = (cub.player.point.x * cub.tile_map);
 	cub.player.point.y = (cub.player.point.y * cub.tile_map);
 	init_mlx(&cub);
-	for (int i = 0; i < cub.height; i++)
-		printf("hello %s\n", cub.map_content[i]);
 	draw_big_map(&cub);
 	mlx_mouse_hook(cub.win, print2, &cub);
 	mlx_hook(cub.win, 17, (1L << 0), ft_close, &cub); // also to search

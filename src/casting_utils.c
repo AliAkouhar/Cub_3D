@@ -51,9 +51,9 @@ t_point	vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
 
 void	ray_direction(t_ray *ray, float rayAngle)
 {
-	ray->isRayDown = rayAngle > 0 && rayAngle < PI;
+	ray->isRayDown = rayAngle >= 0 && rayAngle <= PI;
 	ray->isRayUp = !ray->isRayDown;
-	ray->isRayRight = rayAngle < 0.5 * PI || rayAngle > 1.5 * PI;
+	ray->isRayRight = rayAngle <= 0.5 * PI || rayAngle >= 1.5 * PI;
 	ray->isRayLeft = !ray->isRayRight;
 }
 
