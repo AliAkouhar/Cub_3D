@@ -21,7 +21,7 @@ void	my_mlx_pixel_put(t_cub *cub, int color, float x, float y)
 	dst = cub->add + (((int)y * cub->size_line) + ((int)x * (cub->bit_per_pixel
 					/ 8)));
 	if (cub->endian == 0) // Big endian
-		*(unsigned int *)dst = ((color & 0xFF000000) >> 24) | ((color & 0x00FF0000) >> 8) | ((color & 0x0000FF00) << 8) | ((color & 0x000000FF) << 24);
+		*(unsigned int *)dst =  ((color & 0xFF000000) >> 24) | ((color & 0x00FF0000) >> 8) | ((color & 0x0000FF00) << 8) | ((color & 0x000000FF) << 24);
 	else // Little endian
 		*(unsigned int *)dst = color;
 }
@@ -53,7 +53,7 @@ void	rectangle(int x, int y, int color, t_cub *cub)
 		i++;
 	}
 }
-
+/* coloring the image */
 void	draw_big_map(t_cub *cub)
 {
 	int	i;
@@ -63,18 +63,28 @@ void	draw_big_map(t_cub *cub)
 	int	color;
 
 	i = 0;
-	while (i < cub->height)
+	// while (i < cub->height)
+	// {
+	// 	j = 0;
+	// 	while (j < cub->width)
+	// 	{
+	// 		tileX = j * cub->tile_map;
+	// 		tileY = i * cub->tile_map;
+	// 		if (cub->map_content[i][j] == '1')
+	// 			color = BLACK;
+	// 		else if (cub->map_content[i][j] == '0' || cub->map_content[i][j] == cub->char_player)
+	// 			color = WHITE;
+	// 		// rectangle(tileX, tileY, color, cub);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	while (i < SCREEN_HEIGHT)
 	{
 		j = 0;
-		while (j < cub->width)
+		while (j < SCREEN_WIDTH)
 		{
-			tileX = j * cub->tile_map;
-			tileY = i * cub->tile_map;
-			if (cub->map_content[i][j] == '1')
-				color = BLACK;
-			else if (cub->map_content[i][j] == '0' || cub->map_content[i][j] == cub->char_player)
-				color = WHITE;
-			rectangle(tileX, tileY, color, cub);
+			my_mlx_pixel_put(cub, 0xFFFFFFFF, j, i);
 			j++;
 		}
 		i++;

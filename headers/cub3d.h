@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/06 08:41:00 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/07 17:15:25 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define WALL_STRIP_WIDTH 1
 # define LINE_SIZE 200
 
-# define SCREEN_WIDTH 1000
-# define SCREEN_HEIGHT 700
+# define SCREEN_WIDTH 1500
+# define SCREEN_HEIGHT 900
 
 # define NORTH 0
 # define SOUTH 1
@@ -69,6 +69,7 @@ typedef	struct	s_player
 	float	FOV_angle;
 	float	rotationAngle;
 	float	rotationSpeed;
+	float	current_ray_angle;
 }	t_player;
 
 typedef struct cub
@@ -141,8 +142,8 @@ void    	normalizing(float *rayAngle);
 t_point		vertical_intersection(t_cub *cub, t_ray ray, float rayAngle);
 t_point		horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle);
 void    	ray_direction(t_ray *ray, float rayAngle);
-float   	getDistance(float x1, float y1, float x2, float y2);
-bool    	isAWall(t_cub *cub, t_point point, char c, t_ray ray);
+float   	get_distance(float x1, float y1, float x2, float y2);
+bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
 
 
 

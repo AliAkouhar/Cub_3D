@@ -1,11 +1,11 @@
 #include "../headers/cub3d.h"
 
-float	getDistance(float x1, float y1, float x2, float y2)
+float	get_distance(float x1, float y1, float x2, float y2)
 {
 	return (sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1))));
 }
 
-bool	isAWall(t_cub *cub, t_point point, char c, t_ray ray)
+bool	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray)
 {
 	int	x;
 	int	y;
@@ -41,7 +41,7 @@ t_point	vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
 	while (inter.x >= 0 && inter.x <= SCREEN_WIDTH && inter.y >= 0
 		&& inter.y <= SCREEN_HEIGHT)
 	{
-		if (isAWall(cub, inter, 'v', ray))
+		if (is_a_wall(cub, inter, 'v', ray))
 			return (inter);
 		inter.x += step.x;
 		inter.y += step.y;
