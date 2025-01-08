@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/07 17:15:25 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/08 09:45:08 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
 
+// # define COLOR_NORTH 0xFFFF1493 // Red
+// # define COLOR_SOUTH 0xFFFF69B4 // Green
+// # define COLOR_EAST  0xFF9314FF // Orange
+// # define COLOR_WEST  0xFF8515C7 // Magenta
+
+#define COLOR_NORTH 0xFF00FFFF // pink
+#define COLOR_SOUTH 0xfcb3b36d // aqua
+#define COLOR_EAST  0xFFFFFFFF // white
+#define COLOR_WEST  0xFFDCDCDC // Black
+
 typedef struct ray
 {
 	bool	isRayUp;
@@ -57,6 +67,7 @@ typedef struct point
 {
 	float	x;
 	float	y;
+	int		ver_inter;
 }	t_point;
 
 typedef	struct	s_player
@@ -122,12 +133,12 @@ void    	check_player_spaces_position(t_cub *cub);
 void    	init_mlx(t_cub *cub);
 
 
-void    	draw_big_map(t_cub *cub);
+void		init_cub(t_cub *cub);
+void    	draw(t_cub *cub);
 void		my_mlx_pixel_put(t_cub *cub, int color, float x, float y);
 void    	draw_player(t_cub *cub);
 void    	update_player(int key, t_cub *cub);
 void	    line(t_cub *cub, float x0, float y0, float x1, float y1);
-
 void		free_2d(char **str);
 void		free_all_map(t_cub *cub);
 void		fre(char *str);
@@ -144,6 +155,7 @@ t_point		horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle);
 void    	ray_direction(t_ray *ray, float rayAngle);
 float   	get_distance(float x1, float y1, float x2, float y2);
 bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
+int			get_wall_color(t_point endPoint, float ray_angle);
 
 
 

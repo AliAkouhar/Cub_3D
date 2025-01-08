@@ -45,7 +45,7 @@ int	is_wall(t_cub *cub, float x, float y)
 	return (1);
 }
 /* update the player position */
-void	player(t_cub *cub, int tile)
+void	player(t_cub *cub)
 {
 	float	moveStepX;
 	float	moveStepY;
@@ -93,14 +93,11 @@ void	line(t_cub *cub, float x0, float y0, float x1, float y1)
 
 void	draw_player(t_cub *cub)
 {
-	int	player_tile;
-
-	player_tile = cub->tile_map / 5;
-	player(cub, player_tile);
-	// line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
-		// (cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
-		// 	* LINE_SIZE), (cub->player.point.y + 5)
-		// + (sin(cub->player.rotationAngle) * LINE_SIZE));
+	player(cub);
 	cast_all_rays(cub);
+	line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
+		(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
+			* LINE_SIZE), (cub->player.point.y + 5)
+		+ (sin(cub->player.rotationAngle) * LINE_SIZE));
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

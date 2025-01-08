@@ -10,7 +10,7 @@ int	key_press(int key, t_cub *cub)
 	{
 		mlx_clear_window(cub->mlx, cub->win);
 		update_player(key, cub);
-		draw_big_map(cub);
+		draw(cub);
 	}
 	return (0);
 }
@@ -43,7 +43,6 @@ int	print2(int mouse, int x, int y, t_cub *cub)
 
 int	ft_close(t_cub *cub)
 {
-	(void)cub;
 	printf("Closing the window..\n");
 	mlx_destroy_image(cub->mlx, cub->img);
 	mlx_destroy_window(cub->mlx, cub->win);

@@ -5,6 +5,7 @@ t_point horizontal_intersection(t_cub *cub, t_ray ray, float ray_angle)
     t_point inter;
     t_point step_point;
 
+    inter.ver_inter = 0;
     inter.y = floor(cub->player.point.y / cub->tile_map) * cub->tile_map;
     if (ray.isRayDown) // if the ray angle is facing down i should add a tile to ystep
         inter.y += cub->tile_map;
@@ -44,7 +45,7 @@ t_point    cast(t_cub *cub, float ray_angle)
     return (pHorizontal);
 }
 
-void draw_3d_walls(t_cub *cub, t_point point, int i)
+void draw_3d_walls(t_cub *cub, t_point point, int i, int color)
 {
     float   ray_distance;
     float   distance_pp;
@@ -69,32 +70,31 @@ void draw_3d_walls(t_cub *cub, t_point point, int i)
     y = wall_top_pixel;
     while (y <= wall_bottom_pixel)
     {
-        my_mlx_pixel_put(cub, 0xFFCC99FF, i, y);
+        my_mlx_pixel_put(cub, color, i, y);
         y++;
     }
 }
+
 /* this function draw the walls using the rays */
 void cast_all_rays(t_cub *cub)
 {
-    int i;
-    float ray_angle;
-    float rayIncrement;
-    t_point endPoint;
+    int     i;
+    float   ray_angle;
+    float   rayIncrement;
+    t_point endpoint;
+    int     color;
 
     i = 0;
     ray_angle = cub->player.rotationAngle - (cub->player.FOV_angle / 2);
     rayIncrement = cub->player.FOV_angle / NUMBER_OF_RAYS;
-    printf("x %f ///// y %f\n\n", cub->player.point.x, cub->player.point.y);
     while (i < NUMBER_OF_RAYS)
     {
         normalizing(&ray_angle);
         cub->player.current_ray_angle = ray_angle;
-        endPoint = cast(cub, ray_angle);
-        // Draw the 3D wall corresponding to the ray
-        draw_3d_walls(cub, endPoint, i);
-        // line(cub, cub->player.point.x, cub->player.point.y, endPoint.x, endPoint.y);
+        endpoint = cast(cub, ray_angle);
+        color = get_wall_color(endpoint, ray_angle);
+        draw_3d_walls(cub, endpoint, i, color);
         ray_angle += rayIncrement;
         i++;
     }
 }
-
