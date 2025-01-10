@@ -65,7 +65,7 @@ void	player(t_cub *cub)
 		cub->player.point.x = newPosX;
 		cub->player.point.y = newPosY;
 	}
-	// draw_player_rectangle(cub, tile);
+	// draw_player_rectangle(cub, 10);
 }
 
 void	line(t_cub *cub, float x0, float y0, float x1, float y1)
@@ -95,9 +95,9 @@ void	draw_player(t_cub *cub)
 {
 	player(cub);
 	cast_all_rays(cub);
-	line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
-		(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
-			* LINE_SIZE), (cub->player.point.y + 5)
-		+ (sin(cub->player.rotationAngle) * LINE_SIZE));
+	// line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
+	// 	(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
+	// 		* LINE_SIZE), (cub->player.point.y + 5)
+	// 	+ (sin(cub->player.rotationAngle) * LINE_SIZE));
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }
