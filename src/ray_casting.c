@@ -93,6 +93,7 @@ void cast_all_rays(t_cub *cub)
         cub->player.current_ray_angle = ray_angle;
         endpoint = cast(cub, ray_angle);
         color = get_wall_color(endpoint, ray_angle);
+        //TODO GETTING THE OFFSET OF THE INTERSECTION POINT AND GET ALL THE ROW!
         draw_3d_walls(cub, endpoint, i, color);
         ray_angle += rayIncrement;
         i++;

@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/09 11:26:39 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/10 15:00:28 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@
 // # define COLOR_EAST  0xFF9314FF // Orange
 // # define COLOR_WEST  0xFF8515C7 // Magenta
 
-#define COLOR_NORTH 0xFF00FFFF // pink
-#define COLOR_SOUTH 0xfcb3b36d // aqua
-#define COLOR_EAST  0xFFFFFFFF // white
-#define COLOR_WEST  0xFFDCDCDC // Black
+#define COLOR_NORTH 0x7FA1C3 // pink
+#define COLOR_SOUTH 0x3E5879 // aqua
+#define COLOR_EAST  0xBED7DC // white
+#define COLOR_WEST  0x596FB7 // Black
 
 typedef struct ray
 {
@@ -84,12 +84,24 @@ typedef	struct	s_player
 	float	current_ray_angle;
 }	t_player;
 
+typedef struct s_texture
+{
+	char	*path;
+	void	*img;
+	void	*addr;
+	int		texture_height;
+	int		texture_width;
+	int		b_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_texture;
+
 typedef struct cub
 {
 	int			tile_map;
 	char		*content;
 	char		**map_content; // to free
-	char 		*textures_path[4]; // to free
+	t_texture	textures[4];
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
@@ -156,6 +168,8 @@ void    	ray_direction(t_ray *ray, float rayAngle);
 float   	get_distance(float x1, float y1, float x2, float y2);
 bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
 int			get_wall_color(t_point endPoint, float ray_angle);
+t_point    cast(t_cub *cub, float ray_angle);
+void    	draw_mini_map(t_cub *cub);
 
 
 

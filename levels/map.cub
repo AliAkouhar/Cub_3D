@@ -1,10 +1,10 @@
-EA ./textures/path_to_the_east_texture
-NO ./textures/path_to_the_north_texture  
-WE ./textures/path_to_the_west_texture
-SO ./textures/path_to_the_south_texture
+EA ./textures/redTriangle.xpm
+NO ./textures/redTriangle.xpm
+WE ./textures/redTriangle.xpm
+SO ./textures/redTriangle.xpm
 
-C 135,206,250
-F 144,238,144
+C 135,206,235
+F 34,139,34
 
 
 111111111111111

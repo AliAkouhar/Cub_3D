@@ -44,11 +44,11 @@ int	print2(int mouse, int x, int y, t_cub *cub)
 int	ft_close(t_cub *cub)
 {
 	printf("Closing the window..\n");
+	free_all_map(cub);
 	mlx_destroy_image(cub->mlx, cub->img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
-	free_all_map(cub);
 	exit(0);
 }
 
