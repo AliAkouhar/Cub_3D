@@ -43,10 +43,10 @@
 // # define COLOR_EAST  0xFF9314FF // Orange
 // # define COLOR_WEST  0xFF8515C7 // Magenta
 
-#define COLOR_NORTH 0xFF00FFFF // pink
-#define COLOR_SOUTH 0xfcb3b36d // aqua
-#define COLOR_EAST  0xFFFFFFFF // white
-#define COLOR_WEST  0xFFDCDCDC // Black
+#define COLOR_NORTH 0x7FA1C3 // pink
+#define COLOR_SOUTH 0x3E5879 // aqua
+#define COLOR_EAST  0xBED7DC // white
+#define COLOR_WEST  0x596FB7 // Black
 
 typedef struct ray
 {
@@ -156,6 +156,8 @@ void    	ray_direction(t_ray *ray, float rayAngle);
 float   	get_distance(float x1, float y1, float x2, float y2);
 bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
 int			get_wall_color(t_point endPoint, float ray_angle);
+t_point    cast(t_cub *cub, float ray_angle);
+void    	draw_mini_map(t_cub *cub);
 
 
 

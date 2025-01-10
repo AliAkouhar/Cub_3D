@@ -95,9 +95,10 @@ void	draw_player(t_cub *cub)
 {
 	player(cub);
 	cast_all_rays(cub);
-	line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
-		(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
-			* LINE_SIZE), (cub->player.point.y + 5)
-		+ (sin(cub->player.rotationAngle) * LINE_SIZE));
+	// line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
+	// 	(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
+	// 		* LINE_SIZE), (cub->player.point.y + 5)
+	// 	+ (sin(cub->player.rotationAngle) * LINE_SIZE));
+	draw_mini_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

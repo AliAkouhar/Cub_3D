@@ -43,8 +43,8 @@ void	my_mlx_pixel_put(t_cub *cub, int color, float x, float y)
 		return ;
 	dst = cub->add + (((int)y * cub->size_line) + ((int)x * (cub->bit_per_pixel
 					/ 8)));
-	if (cub->endian == 0) // Big endian
-		*(unsigned int *)dst =  ((color & 0xFF000000) >> 24) | ((color & 0x00FF0000) >> 8) | ((color & 0x0000FF00) << 8) | ((color & 0x000000FF) << 24);
-	else // Little endian
+	// if (cub->endian == 0) // Big endian
+	// 	*(unsigned int *)dst =  ((color & 0xFF000000) >> 24) | ((color & 0x00FF0000) >> 8) | ((color & 0x0000FF00) << 8) | ((color & 0x000000FF) << 24);
+	// else // Little endian
 		*(unsigned int *)dst = color;
 }
