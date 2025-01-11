@@ -60,12 +60,12 @@ void	player(t_cub *cub)
 		+ cos(cub->player.rotationAngle) * cub->player.leftRight;
 	newPosX = cub->player.point.x + moveStepX * cub->player.speed;
 	newPosY = cub->player.point.y + moveStepY * cub->player.speed;
-	if (is_wall(cub, newPosX, newPosY))
+	if (is_wall(cub, newPosX, newPosY) && is_wall(cub, newPosX + cub->player.tile, newPosY) &&
+		is_wall(cub, newPosX, newPosY + cub->player.tile) && is_wall(cub, newPosX + cub->player.tile, newPosY + cub->player.tile))
 	{
 		cub->player.point.x = newPosX;
 		cub->player.point.y = newPosY;
 	}
-	// draw_player_rectangle(cub, tile);
 }
 
 void	line(t_cub *cub, float x0, float y0, float x1, float y1)

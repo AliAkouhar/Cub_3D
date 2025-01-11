@@ -81,6 +81,7 @@ typedef	struct	s_player
 	float	rotationAngle;
 	float	rotationSpeed;
 	float	current_ray_angle;
+	int		tile;
 }	t_player;
 
 typedef struct cub

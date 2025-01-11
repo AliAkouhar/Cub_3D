@@ -31,16 +31,6 @@ void	update_player(int key, t_cub *cub)
 		cub->player.turnDirection = -2;
 }
 
-int	print2(int mouse, int x, int y, t_cub *cub)
-{
-	(void)mouse;
-	(void)x;
-	(void)y;
-	(void)cub;
-	// printf("mouse --> %c\n", cub->map_content[y / TILE][x / TILE]);
-	return (0);
-}
-
 int	ft_close(t_cub *cub)
 {
 	printf("Closing the window..\n");

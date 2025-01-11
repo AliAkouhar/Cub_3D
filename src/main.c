@@ -24,7 +24,6 @@ int	main(int ac, char **av)
 	cub.player.point.y = (cub.player.point.y * cub.tile_map);
 	init_mlx(&cub);
 	draw(&cub);
-	mlx_mouse_hook(cub.win, print2, &cub);
 	mlx_hook(cub.win, 17, 1L << 0, ft_close, &cub); // also to search
 	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub);   // to search
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub);
