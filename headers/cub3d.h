@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/10 15:00:28 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/11 08:57:28 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ t_point		horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle);
 void    	ray_direction(t_ray *ray, float rayAngle);
 float   	get_distance(float x1, float y1, float x2, float y2);
 bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
-int			get_wall_color(t_point endPoint, float ray_angle);
+int			get_right_texture(t_point endPoint, float ray_angle);
 t_point    cast(t_cub *cub, float ray_angle);
 void    	draw_mini_map(t_cub *cub);
 

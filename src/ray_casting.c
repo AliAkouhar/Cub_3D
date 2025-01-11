@@ -82,7 +82,7 @@ void cast_all_rays(t_cub *cub)
     float   ray_angle;
     float   rayIncrement;
     t_point endpoint;
-    int     color;
+    int     tex_index;
 
     i = 0;
     ray_angle = cub->player.rotationAngle - (cub->player.FOV_angle / 2);
@@ -92,9 +92,9 @@ void cast_all_rays(t_cub *cub)
         normalizing(&ray_angle);
         cub->player.current_ray_angle = ray_angle;
         endpoint = cast(cub, ray_angle);
-        color = get_wall_color(endpoint, ray_angle);
+        tex_index = get_right_texture(endpoint, ray_angle);
         //TODO GETTING THE OFFSET OF THE INTERSECTION POINT AND GET ALL THE ROW!
-        draw_3d_walls(cub, endpoint, i, color);
+        draw_3d_walls(cub, endpoint, i, tex_index);
         ray_angle += rayIncrement;
         i++;
     }
