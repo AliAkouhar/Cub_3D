@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/08 09:45:08 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/11 08:57:28 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 # include <stdbool.h>
 
 # define PI 3.14159265358979323846
-# define WALL_STRIP_WIDTH 1
+// # define WALL_STRIP_WIDTH 3
 # define LINE_SIZE 200
 
 # define SCREEN_WIDTH 1500
 # define SCREEN_HEIGHT 900
+# define NUMBER_OF_RAYS SCREEN_WIDTH
 
 # define NORTH 0
 # define SOUTH 1
@@ -84,12 +85,24 @@ typedef	struct	s_player
 	int		tile;
 }	t_player;
 
+typedef struct s_texture
+{
+	char	*path;
+	void	*img;
+	void	*addr;
+	int		texture_height;
+	int		texture_width;
+	int		b_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_texture;
+
 typedef struct cub
 {
 	int			tile_map;
 	char		*content;
 	char		**map_content; // to free
-	char 		*textures_path[4]; // to free
+	t_texture	textures[4];
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
@@ -102,11 +115,18 @@ typedef struct cub
 	int			endian;
 	int			height;
 	int			width;
+	float   	ray_distance;
+    float   	distance_pp;
+    float   	wall_strip_height;
+    int     	wall_top_pixel;
+    int     	wall_bottom_pixel;
+	int			ray_id;
+	int			texture_x;
+	int			texture_y;
 	char		char_player;
 	//
 }			t_cub;
 
-# define NUMBER_OF_RAYS SCREEN_WIDTH / WALL_STRIP_WIDTH
 
 void		ft_parsing(t_cub *cub, int ac, char **av);
 void		is_extension(char *str);
@@ -156,9 +176,10 @@ t_point		horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle);
 void    	ray_direction(t_ray *ray, float rayAngle);
 float   	get_distance(float x1, float y1, float x2, float y2);
 bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
-int			get_wall_color(t_point endPoint, float ray_angle);
+int			get_right_texture(t_point endPoint, float ray_angle);
 t_point    cast(t_cub *cub, float ray_angle);
 void    	draw_mini_map(t_cub *cub);
+void		render_textures_wall(t_cub *cub, t_point point, int tex_index);
 
 
 

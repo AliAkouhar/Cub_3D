@@ -45,34 +45,24 @@ t_point    cast(t_cub *cub, float ray_angle)
     return (pHorizontal);
 }
 
-void draw_3d_walls(t_cub *cub, t_point point, int i, int color)
+void draw_3d_walls(t_cub *cub, t_point point, int index)
 {
-    float   ray_distance;
-    float   distance_pp;
-    float   wall_strip_height;
-    int     wall_top_pixel;
-    int     wall_bottom_pixel;
-    int     y;
-
-    ray_distance = get_distance(cub->player.point.x, cub->player.point.y, point.x, point.y);
-    ray_distance *= cos(cub->player.rotationAngle - cub->player.current_ray_angle);
+    cub->ray_distance = get_distance(cub->player.point.x, cub->player.point.y, point.x, point.y);
+    cub->ray_distance *= cos(cub->player.rotationAngle - cub->player.current_ray_angle);
+    if (cub->ray_distance < 0.0001)
+        cub->ray_distance = 0.0001;
     // distance to projection plane
-    distance_pp = (SCREEN_WIDTH / 2) / tan(cub->player.FOV_angle / 2);
+    cub->distance_pp = (SCREEN_WIDTH / 2) / tan(cub->player.FOV_angle / 2);
     // wall strip height
-    wall_strip_height = (cub->tile_map / ray_distance) * distance_pp;
+    cub->wall_strip_height = (cub->tile_map / cub->ray_distance) * cub->distance_pp;
     // top and bottom pixels of the wall
-    wall_top_pixel = (SCREEN_HEIGHT / 2) - (wall_strip_height / 2);
-    wall_bottom_pixel = (SCREEN_HEIGHT / 2) + (wall_strip_height / 2);
-    if (wall_top_pixel < 0)
-        wall_top_pixel = 0;
-    if (wall_bottom_pixel >= SCREEN_HEIGHT)
-        wall_bottom_pixel = SCREEN_HEIGHT - 1;
-    y = wall_top_pixel;
-    while (y <= wall_bottom_pixel)
-    {
-        my_mlx_pixel_put(cub, color, i, y);
-        y++;
-    }
+    cub->wall_top_pixel = (SCREEN_HEIGHT / 2) - (cub->wall_strip_height / 2);
+    cub->wall_bottom_pixel = (SCREEN_HEIGHT / 2) + (cub->wall_strip_height / 2);
+    // if (cub->wall_top_pixel < 0)
+    //     cub->wall_top_pixel = 0;
+    // if (cub->wall_bottom_pixel >= SCREEN_HEIGHT)
+    //     cub->wall_bottom_pixel = SCREEN_HEIGHT - 1;
+    render_textures_wall(cub, point, index);
 }
 
 /* this function draw the walls using the rays */
@@ -82,7 +72,7 @@ void cast_all_rays(t_cub *cub)
     float   ray_angle;
     float   rayIncrement;
     t_point endpoint;
-    int     color;
+    int     tex_index;
 
     i = 0;
     ray_angle = cub->player.rotationAngle - (cub->player.FOV_angle / 2);
@@ -91,10 +81,10 @@ void cast_all_rays(t_cub *cub)
     {
         normalizing(&ray_angle);
         cub->player.current_ray_angle = ray_angle;
+        cub->ray_id = i;
         endpoint = cast(cub, ray_angle);
-        color = get_wall_color(endpoint, ray_angle);
-        //TODO GETTING THE OFFSET OF THE INTERSECTION POINT AND GET ALL THE ROW!
-        draw_3d_walls(cub, endpoint, i, color);
+        tex_index = get_right_texture(endpoint, ray_angle);
+        draw_3d_walls(cub, endpoint, tex_index);
         ray_angle += rayIncrement;
         i++;
     }

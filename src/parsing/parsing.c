@@ -104,8 +104,4 @@ void	ft_parsing(t_cub *cub, int ac, char **av)
 	cub->width = ft_strlen(cub->map_content[0]);
 	cub->tile_map = 64;
 	cub->player.tile = cub->tile_map / 3;
-	// if (SCREEN_HEIGHT / cub->height < SCREEN_WIDTH / cub->width)
-	//     cub->tile_map = SCREEN_HEIGHT / cub->height;
-	// else
-	//     cub->tile_map = SCREEN_WIDTH / cub->width;
 }

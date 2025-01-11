@@ -72,5 +72,5 @@ void    draw_mini_map(t_cub *cub)
         i++;
     }
     rectangle(cub->player.point.x * 0.2, cub->player.point.y * 0.2, 0xFF00FF00, cub, cub->player.tile);
-    mini_rays(cub);
+    // mini_rays(cub);
 }

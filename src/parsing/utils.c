@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:23:56 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/09/09 18:28:40 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/10 15:08:03 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,21 @@ void	fre(char *str)
 
 void	free_all_map(t_cub *cub)
 {
-	// if (cub->content)
-	// 	fre(cub->content);
+	int	i;
+	
+	i = 0;
+	while (i < 4)
+	{
+		if(cub->textures[i].path)
+		{
+			if (cub->textures[i].img)
+				mlx_destroy_image(cub->mlx, cub->textures[i].img);
+			fre(cub->textures[i].path);
+		}
+		i++;
+	}
 	if (cub->map_content)
 		free_2d(cub->map_content);
-	if (cub->textures_path[NORTH])
-		fre(cub->textures_path[NORTH]);
-	if (cub->textures_path[SOUTH])
-		fre(cub->textures_path[SOUTH]);
-	if (cub->textures_path[EAST])
-		fre(cub->textures_path[EAST]);
-	if (cub->textures_path[WEST])
-		fre(cub->textures_path[WEST]);
 }
 
 void	free_2d(char **str)

@@ -5,8 +5,8 @@ void	error_textures(t_cub *cub, int j)
 	int	i;
 	int	fd;
 
-	if (!cub->textures_path[NORTH] || !cub->textures_path[SOUTH]
-		|| !cub->textures_path[EAST] || !cub->textures_path[WEST] || j != 4)
+	if (!cub->textures[NORTH].path || !cub->textures[SOUTH].path
+		|| !cub->textures[EAST].path || !cub->textures[WEST].path || j != 4)
 	{
 		free_all_map(cub);
 		exit(printf("Error\nWrong Number of textures\n"));
@@ -14,7 +14,7 @@ void	error_textures(t_cub *cub, int j)
 	i = 0;
 	while (i < 4)
 	{
-		fd = open(cub->textures_path[i], O_RDONLY);
+		fd = open(cub->textures[i].path, O_RDONLY);
 		if (fd < 0)
 		{
 			free_all_map(cub);
@@ -27,27 +27,27 @@ void	error_textures(t_cub *cub, int j)
 
 void	ft_norm_25(char *trim, t_cub *cub, int i)
 {
-	if (!ft_strncmp(trim, "NO ", 3) && !cub->textures_path[NORTH])
+	if (!ft_strncmp(trim, "NO ", 3) && !cub->textures[NORTH].path)
 	{
-		cub->textures_path[NORTH] = ft_strtrim(trim + 3, " \t");
+		cub->textures[NORTH].path = ft_strtrim(trim + 3, " \t");
 		fre(cub->map_content[i]);
 		cub->map_content[i] = ft_strdup("");
 	}
-	else if (!ft_strncmp(trim, "SO ", 3) && !cub->textures_path[SOUTH])
+	else if (!ft_strncmp(trim, "SO ", 3) && !cub->textures[SOUTH].path)
 	{
-		cub->textures_path[SOUTH] = ft_strtrim(trim + 3, " \t");
+		cub->textures[SOUTH].path = ft_strtrim(trim + 3, " \t");
 		fre(cub->map_content[i]);
 		cub->map_content[i] = ft_strdup("");
 	}
-	else if (!ft_strncmp(trim, "EA ", 3) && !cub->textures_path[EAST])
+	else if (!ft_strncmp(trim, "EA ", 3) && !cub->textures[EAST].path)
 	{
-		cub->textures_path[EAST] = ft_strtrim(trim + 3, " \t");
+		cub->textures[EAST].path = ft_strtrim(trim + 3, " \t");
 		fre(cub->map_content[i]);
 		cub->map_content[i] = ft_strdup("");
 	}
-	else if (!ft_strncmp(trim, "WE ", 3) && !cub->textures_path[WEST])
+	else if (!ft_strncmp(trim, "WE ", 3) && !cub->textures[WEST].path)
 	{
-		cub->textures_path[WEST] = ft_strtrim(trim + 3, " \t");
+		cub->textures[WEST].path = ft_strtrim(trim + 3, " \t");
 		fre(cub->map_content[i]);
 		cub->map_content[i] = ft_strdup("");
 	}

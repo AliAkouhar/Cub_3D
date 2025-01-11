@@ -1,13 +1,45 @@
 # include "../headers/cub3d.h"
 
+void	load_textures(t_cub *cub)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		cub->textures[i].img = mlx_xpm_file_to_image(cub->mlx, cub->textures[i].path,
+													&cub->textures[i].texture_width,
+													&cub->textures[i].texture_height);
+		if (!cub->textures[i].img)
+		{
+			free_all_map(cub);
+			exit(printf("Error\nFailed to load texture\n"));
+		}
+		cub->textures[i].addr = mlx_get_data_addr(cub->textures[i].img,
+													&cub->textures[i].b_per_pixel,
+													&cub->textures[i].line_length,
+													&cub->textures[i].endian);
+		i++;
+	}
+}
+
+void	init_textures(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		cub->textures[i].path = NULL;
+		i++;
+	}
+}
+
 void	init_cub(t_cub *cub)
 {
+	init_textures(cub);
 	cub->content = NULL;
 	cub->map_content = NULL;
-	cub->textures_path[NORTH] = NULL;
-	cub->textures_path[SOUTH] = NULL;
-	cub->textures_path[EAST] = NULL;
-	cub->textures_path[WEST] = NULL;
 	cub->floor_color.r = -1;
 	cub->floor_color.g = -1;
 	cub->floor_color.b = -1;
@@ -33,6 +65,7 @@ void	init_mlx(t_cub *cub)
 	cub->img = mlx_new_image(cub->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	cub->add = mlx_get_data_addr(cub->img, &cub->bit_per_pixel, &cub->size_line,
 			&cub->endian);
+	load_textures(cub);
 }
 
 void	my_mlx_pixel_put(t_cub *cub, int color, float x, float y)
@@ -43,8 +76,5 @@ void	my_mlx_pixel_put(t_cub *cub, int color, float x, float y)
 		return ;
 	dst = cub->add + (((int)y * cub->size_line) + ((int)x * (cub->bit_per_pixel
 					/ 8)));
-	// if (cub->endian == 0) // Big endian
-	// 	*(unsigned int *)dst =  ((color & 0xFF000000) >> 24) | ((color & 0x00FF0000) >> 8) | ((color & 0x0000FF00) << 8) | ((color & 0x000000FF) << 24);
-	// else // Little endian
-		*(unsigned int *)dst = color;
+	*(unsigned int *)dst = color;
 }

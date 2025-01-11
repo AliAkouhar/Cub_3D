@@ -1,8 +1,13 @@
 #!/bin/bash
 
+# Define color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
 # Check if Makefile exists in the current directory
 if [ ! -f Makefile ]; then
-    echo "Error: No Makefile found in the current directory."
+    echo -e "${RED}Error: No Makefile found in the current directory.${NC}"
     exit 1
 fi
 
@@ -10,9 +15,9 @@ fi
 echo "Running make..."
 make
 if [ $? -eq 0 ]; then
-    echo "Build successful."
+    echo -e "${GREEN}Build successful.${NC}"
 else
-    echo "Build failed."
+    echo -e "${RED}Build failed.${NC}"
     exit 1
 fi
 
@@ -20,8 +25,8 @@ fi
 echo "Cleaning build files..."
 make clean
 if [ $? -eq 0 ]; then
-    echo "Clean successful."
+    echo -e "${GREEN}Clean successful.${NC}"
 else
-    echo "Clean failed."
+    echo -e "${RED}Clean failed.${NC}"
     exit 1
 fi
