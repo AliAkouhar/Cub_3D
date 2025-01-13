@@ -155,7 +155,7 @@ void    	init_mlx(t_cub *cub);
 
 
 void		init_cub(t_cub *cub);
-void    	draw(t_cub *cub);
+int    	draw(t_cub *cub);
 void		my_mlx_pixel_put(t_cub *cub, int color, float x, float y);
 void    	draw_player(t_cub *cub);
 void    	update_player(int key, t_cub *cub);

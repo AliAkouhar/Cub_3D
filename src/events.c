@@ -10,7 +10,7 @@ int	key_press(int key, t_cub *cub)
 	{
 		mlx_clear_window(cub->mlx, cub->win);
 		update_player(key, cub);
-		draw(cub);
+		// draw(cub);
 	}
 	return (0);
 }

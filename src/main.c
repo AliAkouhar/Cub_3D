@@ -27,5 +27,6 @@ int	main(int ac, char **av)
 	mlx_hook(cub.win, 17, 1L << 0, ft_close, &cub); // also to search
 	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub);   // to search
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub);
+	mlx_loop_hook(cub.mlx, draw, &cub);
 	mlx_loop(cub.mlx);
 }

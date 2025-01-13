@@ -37,7 +37,7 @@ unsigned int	rgb_to_hex(t_color color)
 }
 
 /* coloring the image */
-void	draw(t_cub *cub)
+int	draw(t_cub *cub)
 {
 	int	i;
 	int	j;
@@ -59,4 +59,5 @@ void	draw(t_cub *cub)
 		i++;
 	}
 	draw_player(cub);
+	return (0);
 }
