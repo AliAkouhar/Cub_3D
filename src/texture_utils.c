@@ -1,6 +1,6 @@
 #include "../headers/cub3d.h"
 
-float get_wall_x(t_cub *cub, t_point point)
+float   get_wall_x(t_cub *cub, t_point point)
 {
     if (point.ver_inter)
         return (fmod(point.y, cub->tile_map));
@@ -28,9 +28,9 @@ unsigned int get_texture_color(t_cub *cub, int tex_index)
 
 void render_textures_wall(t_cub *cub, t_point point, int tex_index)
 {
-    float             wall_x;
-    int             y;
-    int    color;
+    float               wall_x;
+    int                 y;
+    int                 color;
 
     wall_x = get_wall_x(cub, point);
     cub->texture_x = get_texture_x(cub, wall_x, tex_index);

@@ -92,6 +92,7 @@ void	check_player_position(t_cub *cub)
 				cub->player.point.x = j;
 				cub->player.point.y = i;
 				cub->char_player = cub->map_content[i][j];
+				cub->map_content[i][j] = '0';
 			}
 	}
 	if (pos_count != 1)

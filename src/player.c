@@ -27,7 +27,7 @@ int	is_wall(t_cub *cub, float x, float y)
 	float	dy;
 	float	step;
 
-	step = 1.0;
+	step = 4.0;
 	dx = -step;
 	while (dx <= step)
 	{
@@ -36,6 +36,8 @@ int	is_wall(t_cub *cub, float x, float y)
 		{
 			px = floor((x + dx) / cub->tile_map);
 			py = floor((y + dy) / cub->tile_map);
+			if (px < 0 || px >= cub->width || py < 0 || py >= cub->height)
+    			return (0);
 			if (cub->map_content[py][px] == '1')
 				return (0);
 			dy += step;
@@ -45,7 +47,7 @@ int	is_wall(t_cub *cub, float x, float y)
 	return (1);
 }
 /* update the player position */
-void	player(t_cub *cub)
+void	player_position(t_cub *cub)
 {
 	float	moveStepX;
 	float	moveStepY;
@@ -60,10 +62,14 @@ void	player(t_cub *cub)
 		+ cos(cub->player.rotationAngle) * cub->player.leftRight;
 	newPosX = cub->player.point.x + moveStepX * cub->player.speed;
 	newPosY = cub->player.point.y + moveStepY * cub->player.speed;
-	if (is_wall(cub, newPosX, newPosY) && is_wall(cub, newPosX + cub->player.tile, newPosY) &&
-		is_wall(cub, newPosX, newPosY + cub->player.tile) && is_wall(cub, newPosX + cub->player.tile, newPosY + cub->player.tile))
+	if (is_wall(cub, newPosX, cub->player.point.y))
 	{
 		cub->player.point.x = newPosX;
+		// cub->player.point.y = newPosY;
+	}
+	if (is_wall(cub, cub->player.point.x, newPosY))
+	{
+		// cub->player.point.x = newPosX;
 		cub->player.point.y = newPosY;
 	}
 }
@@ -82,23 +88,22 @@ void	line(t_cub *cub, float x0, float y0, float x1, float y1)
 	else
 		steps = fabs(dy);
     i = 0;
+	int color = 0x00FFFF;
 	while (i <= steps)
 	{
-		my_mlx_pixel_put(cub, 0x00FF00, round(x0), round(y0));
+		if (cub->is_ray_hit_door)
+			color = 0x00FF00;
+		my_mlx_pixel_put(cub, color, round(x0), round(y0));
 		x0 += dx / steps;
 		y0 += dy / steps;
         i++;
 	}
 }
 
-void	draw_player(t_cub *cub)
+void	render_3d(t_cub *cub)
 {
-	player(cub);
+	player_position(cub);
 	cast_all_rays(cub);
-	// line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
-	// 	(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
-	// 		* LINE_SIZE), (cub->player.point.y + 5)
-	// 	+ (sin(cub->player.rotationAngle) * LINE_SIZE));
 	draw_mini_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

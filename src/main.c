@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:41:52 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/10 15:13:48 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/13 07:53:54 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int	main(int ac, char **av)
 		return (printf("Error\nIvalid SCREEN_WIDTH or SCREEN_HEIGHT\n"), 1);
 	init_cub(&cub);
 	ft_parsing(&cub, ac, av);
-	cub.player.point.x = (cub.player.point.x * cub.tile_map);
-	cub.player.point.y = (cub.player.point.y * cub.tile_map);
+	cub.player.point.x = (cub.player.point.x * cub.tile_map) + cub.tile_map / 2;
+	cub.player.point.y = (cub.player.point.y * cub.tile_map)  + cub.tile_map / 2;
 	init_mlx(&cub);
-	draw(&cub);
+	mlx_loop_hook(cub.mlx, draw, &cub);
 	mlx_hook(cub.win, 17, 1L << 0, ft_close, &cub); // also to search
 	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub);   // to search
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub);
-	mlx_loop_hook(cub.mlx, draw, &cub);
+	// mlx_loop_hook(cub.mlx, draw, &cub);
 	mlx_loop(cub.mlx);
 }
