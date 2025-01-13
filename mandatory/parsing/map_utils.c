@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 13:04:39 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/13 13:04:40 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
 int	size_map(char **map)
@@ -12,11 +24,13 @@ int	size_map(char **map)
 	{
 		j = -1;
 		while (map[i][++j])
+		{
 			if (check_char(map[i][j]) && !flag)
 			{
 				flag = 1;
 				break ;
 			}
+		}
 		if (flag)
 			break ;
 	}
@@ -99,6 +113,7 @@ void	adjust_length(t_cub *cub)
 			max = ft_strlen(cub->map_content[i]);
 	i = -1;
 	while (cub->map_content[++i])
+	{
 		if ((int)ft_strlen(cub->map_content[i]) < max)
 		{
 			tmp = cub->map_content[i];
@@ -107,4 +122,5 @@ void	adjust_length(t_cub *cub)
 			fre(tmp);
 			fre(new_str);
 		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 09:34:51 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/13 12:54:24 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,13 @@ typedef struct point
 typedef	struct	s_player
 {
 	t_point	point;
-	float	turnDirection;
-	float	walkDirection;
-	float	leftRight;
+	float	turn_direction;
+	float	walk_direction;
+	float	left_right;
 	float	speed;
-	float	FOV_angle;
-	float	rotationAngle;
-	float	rotationSpeed;
+	float	fov_angle;
+	float	rotation_angle;
+	float	rotation_speed;
 	float	current_ray_angle;
 	int		tile;
 }	t_player;
@@ -99,6 +99,8 @@ typedef struct cub
 	int			tile_map;
 	char		*content;
 	char		**map_content; // to free
+	char		char_player;
+	char 		c;
 	t_texture	textures[4];
 	t_color		floor_color;
 	t_color		ceiling_color;
@@ -120,7 +122,6 @@ typedef struct cub
 	int			ray_id;
 	int			texture_x;
 	int			texture_y;
-	char		char_player;
 }			t_cub;
 
 
@@ -141,13 +142,15 @@ int 		is_all_whitespaces(char *str);
 void    	check_textures(t_cub *cub);
 void    	assign_color(t_cub *cub, char **split, char c);
 void    	ft_norm_25_2(char *trim, t_cub *cub, int i, int *j);
-void    	check_rgb(int *j, char *str, t_cub *cub, char c, char *to_free);
+void    	check_rgb(int *j, char *str, t_cub *cub, char *to_free);
 void    	adjust_map(t_cub *cub);
 int 		size_map(char **map);
 void    	switch_spaces(t_cub *cub);
 void    	adjust_length(t_cub *cub);
 void    	check_player_spaces_position(t_cub *cub);
 void    	init_mlx(t_cub *cub);
+void		save_player_data(t_cub *cub, int i, int j);
+void		fill_norm_25(t_cub *cub);
 
 
 void		init_cub(t_cub *cub);

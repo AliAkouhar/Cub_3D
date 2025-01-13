@@ -27,7 +27,7 @@ t_point	vertical_intersection(t_cub *cub, t_ray ray)
 	t_point	inter;
 	t_point	step;
 
-    inter.ver_inter = 1;
+	inter.ver_inter = 1;
 	inter.x = floor(cub->player.point.x / cub->tile_map) * cub->tile_map;
 	if (ray.isRayRight)
 		inter.x += cub->tile_map;
