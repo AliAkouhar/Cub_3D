@@ -1,4 +1,4 @@
-#include "../headers/cub3d.h"
+#include "../headers/cub3d_bonus.h"
 
 void	draw_player_rectangle(t_cub *cub, int tile)
 {
@@ -60,11 +60,10 @@ void	player_position(t_cub *cub)
 		+ cos(cub->player.rotation_angle) * cub->player.left_right;
 	new_pos.x = cub->player.point.x + move_step.x * cub->player.speed;
 	new_pos.y = cub->player.point.y + move_step.y * cub->player.speed;
-	if (is_wall(cub, new_pos.x, new_pos.y))
-	{
+	if (is_wall(cub, new_pos.x, cub->player.point.y))
 		cub->player.point.x = new_pos.x;
+	if (is_wall(cub, cub->player.point.x, new_pos.y))
 		cub->player.point.y = new_pos.y;
-	}
 }
 
 void	render_3d(t_cub *cub)

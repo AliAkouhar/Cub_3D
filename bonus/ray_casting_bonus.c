@@ -1,4 +1,4 @@
-#include "../headers/cub3d.h"
+#include "../headers/cub3d_bonus.h"
 
 t_point	horizontal_intersection(t_cub *cub, t_ray ray)
 {

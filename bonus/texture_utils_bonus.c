@@ -1,4 +1,4 @@
-#include "../headers/cub3d.h"
+#include "../headers/cub3d_bonus.h"
 
 float	get_wall_x(t_cub *cub, t_point point)
 {

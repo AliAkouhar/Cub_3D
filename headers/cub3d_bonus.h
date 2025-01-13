@@ -102,6 +102,7 @@ typedef struct cub
 	char		char_player;
 	char 		c;
 	t_texture	textures[4];
+	t_texture	zoom;
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
@@ -178,8 +179,10 @@ int			get_right_texture(t_cub *cub, t_point endPoint);
 t_point		cast(t_cub *cub);
 void    	draw_mini_map(t_cub *cub);
 void		render_textures_wall(t_cub *cub, t_point point, int tex_index);
-
-
+//! bonus
+void    	render_bonus_features(t_cub *cub);
+void    	render_zoom(t_cub *cub);
+void    	load_zoom(t_cub *cub);
 
 
 #endif

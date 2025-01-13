@@ -1,4 +1,4 @@
-#include "../headers/cub3d.h"
+#include "../headers/cub3d_bonus.h"
 
 void	load_textures(t_cub *cub)
 {
@@ -20,6 +20,7 @@ void	load_textures(t_cub *cub)
 				&cub->textures[i].endian);
 		i++;
 	}
+	load_zoom(cub);
 }
 
 void	init_textures(t_cub *cub)
@@ -33,6 +34,8 @@ void	init_textures(t_cub *cub)
 		cub->textures[i].img = NULL;
 		i++;
 	}
+	cub->zoom.path = NULL;
+	cub->zoom.img = NULL;
 }
 
 void	init_cub(t_cub *cub)

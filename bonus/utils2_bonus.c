@@ -1,4 +1,4 @@
-#include "../headers/cub3d.h"
+#include "../headers/cub3d_bonus.h"
 
 float	radian_to_degree(float corner)
 {

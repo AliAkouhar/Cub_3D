@@ -1,4 +1,4 @@
-#include "../headers/cub3d.h"
+#include "../headers/cub3d_bonus.h"
 
 float	get_distance(float x1, float y1, float x2, float y2)
 {

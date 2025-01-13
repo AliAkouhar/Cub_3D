@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "../../headers/cub3d_bonus.h"
 
 void	fre(char *str)
 {
@@ -36,6 +36,8 @@ void	free_all_map(t_cub *cub)
 		}
 		i++;
 	}
+	if (cub->zoom.img)
+		mlx_destroy_image(cub->mlx, cub->zoom.img);
 	if (cub->map_content)
 		free_2d(cub->map_content);
 }

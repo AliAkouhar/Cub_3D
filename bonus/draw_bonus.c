@@ -1,4 +1,4 @@
-#include "../headers/cub3d.h"
+#include "../headers/cub3d_bonus.h"
 
 unsigned int	rgb_to_hex(t_color color)
 {

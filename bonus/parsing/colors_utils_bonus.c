@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "../../headers/cub3d_bonus.h"
 
 void	assign_color(t_cub *cub, char **split, char c)
 {
