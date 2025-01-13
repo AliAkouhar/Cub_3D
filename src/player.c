@@ -36,6 +36,8 @@ int	is_wall(t_cub *cub, float x, float y)
 		{
 			px = floor((x + dx) / cub->tile_map);
 			py = floor((y + dy) / cub->tile_map);
+			if (px < 0 || px >= cub->width || py < 0 || py >= cub->height)
+    			return (0);
 			if (cub->map_content[py][px] == '1')
 				return (0);
 			dy += step;
@@ -45,7 +47,7 @@ int	is_wall(t_cub *cub, float x, float y)
 	return (1);
 }
 /* update the player position */
-void	player(t_cub *cub)
+void	player_position(t_cub *cub)
 {
 	float	moveStepX;
 	float	moveStepY;
@@ -91,14 +93,10 @@ void	line(t_cub *cub, float x0, float y0, float x1, float y1)
 	}
 }
 
-void	draw_player(t_cub *cub)
+void	render_3d(t_cub *cub)
 {
-	player(cub);
+	player_position(cub);
 	cast_all_rays(cub);
-	// line(cub, cub->player.point.x + 5, cub->player.point.y + 5,
-	// 	(cub->player.point.x + 5) + (cos(cub->player.rotationAngle)
-	// 		* LINE_SIZE), (cub->player.point.y + 5)
-	// 	+ (sin(cub->player.rotationAngle) * LINE_SIZE));
 	draw_mini_map(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

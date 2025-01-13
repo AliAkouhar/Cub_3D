@@ -1,6 +1,6 @@
 #include "../headers/cub3d.h"
 
-float get_wall_x(t_cub *cub, t_point point)
+float   get_wall_x(t_cub *cub, t_point point)
 {
     if (point.ver_inter)
         return (fmod(point.y, cub->tile_map));

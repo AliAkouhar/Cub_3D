@@ -1,33 +1,5 @@
 #include "../headers/cub3d.h"
 
-// void	rectangle(int x, int y, int color, t_cub *cub)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (i < cub->tile_map)
-// 	{
-// 		my_mlx_pixel_put(cub, BLACK, x, y + i);
-// 		j = 1;
-// 		while (j < cub->tile_map)
-// 		{
-// 			my_mlx_pixel_put(cub, color, x + j, y + i);
-// 			j++;
-// 		}
-// 		j = 0;
-// 		if (i == 0)
-// 		{
-// 			while (j < cub->tile_map)
-// 			{
-// 				my_mlx_pixel_put(cub, BLACK, x + j, y + i);
-// 				j++;
-// 			}
-// 		}
-// 		i++;
-// 	}
-// }
-
 unsigned int	rgb_to_hex(t_color color)
 {
 	unsigned int color1;
@@ -37,12 +9,13 @@ unsigned int	rgb_to_hex(t_color color)
 }
 
 /* coloring the image */
-void	draw(t_cub *cub)
+int	draw(t_cub *cub)
 {
 	int	i;
 	int	j;
 
 	i = 0;
+	mlx_clear_window(cub->mlx, cub->win);
 	while (i < SCREEN_WIDTH)
 	{
 		j = 0;
@@ -58,5 +31,6 @@ void	draw(t_cub *cub)
 		}
 		i++;
 	}
-	draw_player(cub);
+	render_3d(cub);
+	return (0);
 }

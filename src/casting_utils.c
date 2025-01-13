@@ -22,7 +22,7 @@ bool	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray)
 	return (false);
 }
 
-t_point	vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
+t_point	vertical_intersection(t_cub *cub, t_ray ray)
 {
 	t_point	inter;
 	t_point	step;
@@ -32,15 +32,15 @@ t_point	vertical_intersection(t_cub *cub, t_ray ray, float rayAngle)
 	if (ray.isRayRight)
 		inter.x += cub->tile_map;
 	inter.y = cub->player.point.y + ((inter.x - cub->player.point.x)
-			* tan(rayAngle));
+			* tan(cub->player.current_ray_angle));
 	step.x = cub->tile_map;
 	if (ray.isRayLeft)
 		step.x *= -1;
-	step.y = cub->tile_map * tan(rayAngle);
+	step.y = cub->tile_map * tan(cub->player.current_ray_angle);
 	if ((ray.isRayUp && step.y > 0) || (ray.isRayDown && step.y < 0))
 		step.y *= -1;
-	while (inter.x >= 0 && inter.x <= SCREEN_WIDTH && inter.y >= 0
-		&& inter.y <= SCREEN_HEIGHT)
+	while (inter.x >= 0 && inter.x <= cub->tile_map * cub->width && inter.y >= 0
+		&& inter.y <= cub->tile_map * cub->height)
 	{
 		if (is_a_wall(cub, inter, 'v', ray))
 			return (inter);
@@ -58,9 +58,9 @@ void	ray_direction(t_ray *ray, float rayAngle)
 	ray->isRayLeft = !ray->isRayRight;
 }
 
-void	normalizing(float *rayAngle)
+void	normalizing(t_cub *cub)
 {
-	*rayAngle = fmod(*rayAngle, 2 * PI);
-	if (*rayAngle < 0)
-		*rayAngle += 2 * PI;
+	cub->player.current_ray_angle = fmod(cub->player.current_ray_angle, 2 * PI);
+	if (cub->player.current_ray_angle < 0)
+		cub->player.current_ray_angle += 2 * PI;
 }

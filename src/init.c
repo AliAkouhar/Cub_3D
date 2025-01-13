@@ -31,6 +31,7 @@ void	init_textures(t_cub *cub)
 	while (i < 4)
 	{
 		cub->textures[i].path = NULL;
+		cub->textures[i].img = NULL;
 		i++;
 	}
 }
@@ -49,7 +50,7 @@ void	init_cub(t_cub *cub)
 	cub->player.turnDirection = 0;
 	cub->player.walkDirection = 0;
 	cub->player.leftRight = 0;
-	cub->player.speed = 3.0;
+	cub->player.speed = 2.0;
 	cub->player.FOV_angle = 60 * (PI / 180);
 	cub->player.rotationAngle = PI / 2;
 	cub->player.rotationSpeed = 2 * (PI / 180);

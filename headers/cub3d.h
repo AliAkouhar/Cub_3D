@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/11 08:57:28 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/13 09:34:51 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,16 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+# define W 119
+# define S 115
+# define A 97
+# define D 100
+# define RIGHT 65363
+# define LEFT 65361
+# define ESC 65307
 
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
-
-// # define COLOR_NORTH 0xFFFF1493 // Red
-// # define COLOR_SOUTH 0xFFFF69B4 // Green
-// # define COLOR_EAST  0xFF9314FF // Orange
-// # define COLOR_WEST  0xFF8515C7 // Magenta
-
-#define COLOR_NORTH 0x7FA1C3 // pink
-#define COLOR_SOUTH 0x3E5879 // aqua
-#define COLOR_EAST  0xBED7DC // white
-#define COLOR_WEST  0x596FB7 // Black
 
 typedef struct ray
 {
@@ -124,7 +121,6 @@ typedef struct cub
 	int			texture_x;
 	int			texture_y;
 	char		char_player;
-	//
 }			t_cub;
 
 
@@ -155,10 +151,9 @@ void    	init_mlx(t_cub *cub);
 
 
 void		init_cub(t_cub *cub);
-void    	draw(t_cub *cub);
+int    		draw(t_cub *cub);
 void		my_mlx_pixel_put(t_cub *cub, int color, float x, float y);
-void    	draw_player(t_cub *cub);
-void    	update_player(int key, t_cub *cub);
+void		render_3d(t_cub *cub);
 void	    line(t_cub *cub, float x0, float y0, float x1, float y1);
 void		free_2d(char **str);
 void		free_all_map(t_cub *cub);
@@ -170,14 +165,14 @@ int			print2(int mouse, int x, int y, t_cub *cub);
 int			ft_close(t_cub *cub);
 int			key_press(int key, t_cub *cub);
 void    	cast_all_rays(t_cub *cub);
-void    	normalizing(float *rayAngle);
-t_point		vertical_intersection(t_cub *cub, t_ray ray, float rayAngle);
-t_point		horizontal_intersection(t_cub *cub, t_ray ray, float rayAngle);
+void    	normalizing(t_cub *cub);
+t_point		vertical_intersection(t_cub *cub, t_ray ray);
+t_point		horizontal_intersection(t_cub *cub, t_ray ray);
 void    	ray_direction(t_ray *ray, float rayAngle);
 float   	get_distance(float x1, float y1, float x2, float y2);
 bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
-int			get_right_texture(t_point endPoint, float ray_angle);
-t_point    cast(t_cub *cub, float ray_angle);
+int			get_right_texture(t_cub *cub, t_point endPoint);
+t_point		cast(t_cub *cub);
 void    	draw_mini_map(t_cub *cub);
 void		render_textures_wall(t_cub *cub, t_point point, int tex_index);
 
