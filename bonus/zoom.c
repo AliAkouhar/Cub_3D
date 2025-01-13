@@ -22,7 +22,7 @@ void    render_zoom(t_cub *cub)
     unsigned int     color;
     t_point img_zoom;
 
-    img_zoom.x = (SCREEN_WIDTH - cub->zoom.texture_width) / 2;
+    img_zoom.x = (SCREEN_WIDTH - cub->zoom.texture_width + 85) / 2;
     img_zoom.y = (SCREEN_HEIGHT - cub->zoom.texture_height) / 2;
     i = 0;
     while (i < cub->zoom.texture_height)

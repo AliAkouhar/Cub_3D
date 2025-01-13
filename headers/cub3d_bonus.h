@@ -42,6 +42,8 @@
 # define RIGHT 65363
 # define LEFT 65361
 # define ESC 65307
+# define LEFT_MOUSE 1
+# define RIGHT_MOUSE 3
 
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
@@ -103,6 +105,7 @@ typedef struct cub
 	char 		c;
 	t_texture	textures[4];
 	t_texture	zoom;
+	t_texture	weapon;
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
@@ -183,6 +186,12 @@ void		render_textures_wall(t_cub *cub, t_point point, int tex_index);
 void    	render_bonus_features(t_cub *cub);
 void    	render_zoom(t_cub *cub);
 void    	load_zoom(t_cub *cub);
+int			mouse_press(int botton, int x, int y, t_cub *cub);
+int 		mouse_release(int botton, int x, int y, t_cub *cub);
+void    	load_weapon(t_cub *cub);
+void    	render_weapon(t_cub *cub);
+
+
 
 
 #endif

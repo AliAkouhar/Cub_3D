@@ -21,6 +21,7 @@ void	load_textures(t_cub *cub)
 		i++;
 	}
 	load_zoom(cub);
+	load_weapon(cub);
 }
 
 void	init_textures(t_cub *cub)
@@ -36,6 +37,7 @@ void	init_textures(t_cub *cub)
 	}
 	cub->zoom.path = NULL;
 	cub->zoom.img = NULL;
+	cub->weapon.img = NULL;
 }
 
 void	init_cub(t_cub *cub)

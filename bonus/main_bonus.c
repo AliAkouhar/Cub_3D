@@ -26,5 +26,7 @@ int	main(int ac, char **av)
 	mlx_hook(cub.win, 17, 1L << 0, ft_close, &cub);
 	mlx_hook(cub.win, 2, 1L << 0, key_press, &cub);
 	mlx_hook(cub.win, 3, 1L << 1, key_release, &cub);
+	mlx_hook(cub.win, 4, 1L<<2, mouse_press, &cub);
+	mlx_hook(cub.win, 5, 1L<<3, mouse_release, &cub);
 	mlx_loop(cub.mlx);
 }

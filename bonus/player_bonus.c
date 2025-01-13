@@ -49,21 +49,24 @@ int	is_wall(t_cub *cub, float x, float y)
 
 void	player_position(t_cub *cub)
 {
-	t_point	move_step;
-	t_point	new_pos;
+	float	moveStepX;
+	float	moveStepY;
+	float	newPosX;
+	float	newPosY;
 
 	cub->player.rotation_angle += cub->player.turn_direction
 		* cub->player.rotation_speed;
-	move_step.x = cos(cub->player.rotation_angle) * cub->player.walk_direction
+	moveStepX = cos(cub->player.rotation_angle) * cub->player.walk_direction
 		- sin(cub->player.rotation_angle) * cub->player.left_right;
-	move_step.y = sin(cub->player.rotation_angle) * cub->player.walk_direction
+	moveStepY = sin(cub->player.rotation_angle) * cub->player.walk_direction
 		+ cos(cub->player.rotation_angle) * cub->player.left_right;
-	new_pos.x = cub->player.point.x + move_step.x * cub->player.speed;
-	new_pos.y = cub->player.point.y + move_step.y * cub->player.speed;
-	if (is_wall(cub, new_pos.x, cub->player.point.y))
-		cub->player.point.x = new_pos.x;
-	if (is_wall(cub, cub->player.point.x, new_pos.y))
-		cub->player.point.y = new_pos.y;
+	newPosX = cub->player.point.x + moveStepX * cub->player.speed;
+	newPosY = cub->player.point.y + moveStepY * cub->player.speed;
+	//wall collision
+	if (is_wall(cub, newPosX, cub->player.point.y))
+		cub->player.point.x = newPosX;
+	if (is_wall(cub, cub->player.point.x, newPosY))
+		cub->player.point.y = newPosY;
 }
 
 void	render_3d(t_cub *cub)
