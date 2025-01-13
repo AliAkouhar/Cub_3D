@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   casting_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 13:27:04 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/13 13:27:05 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub3d.h"
 
 float	get_distance(float x1, float y1, float x2, float y2)
@@ -17,7 +29,7 @@ bool	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray)
 	x = floor(point.x / cub->tile_map);
 	y = floor(point.y / cub->tile_map);
 	if (x >= 0 && x < cub->width && y >= 0 && y < cub->height)
-		if (cub->map_content[y][x] == '1' || cub->map_content[y][x] == 'D')
+		if (cub->map_content[y][x] == '1')
 			return (true);
 	return (false);
 }
@@ -27,7 +39,7 @@ t_point	vertical_intersection(t_cub *cub, t_ray ray)
 	t_point	inter;
 	t_point	step;
 
-    inter.ver_inter = 1;
+	inter.ver_inter = 1;
 	inter.x = floor(cub->player.point.x / cub->tile_map) * cub->tile_map;
 	if (ray.isRayRight)
 		inter.x += cub->tile_map;

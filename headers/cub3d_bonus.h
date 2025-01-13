@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 12:54:24 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/13 13:19:03 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../gnl/get_next_line.h"
 # include "../libft/libft.h"
@@ -102,7 +102,6 @@ typedef struct cub
 	char		char_player;
 	char 		c;
 	t_texture	textures[4];
-	
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
@@ -121,7 +120,6 @@ typedef struct cub
     int     	wall_top_pixel;
     int     	wall_bottom_pixel;
 	int			ray_id;
-	int			is_ray_hit_door;
 	int			texture_x;
 	int			texture_y;
 }			t_cub;

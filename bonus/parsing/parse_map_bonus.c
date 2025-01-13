@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 12:47:59 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/30 20:06:36 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/13 12:56:39 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ void	fill_map(t_cub *cub)
 	if (!cub->content || cub->content[0] == '\0'
 		|| is_all_whitespaces(cub->content))
 	{
-		fre(cub->content);
-		free_all_map(cub);
-		exit(printf("Error\nEmpty map\n"));
+		fill_norm_25(cub);
 	}
 	if (!check_char(cub->content[0])
 		|| (!check_char(cub->content[ft_strlen(cub->content) - 1])
@@ -62,12 +60,14 @@ void	check_empty_line(t_cub *cub, char *str)
 
 	i = -1;
 	while (str[++i])
+	{
 		if (str[i] == '\n' && str[i + 1] == '\n')
 		{
 			fre(str);
 			free_all_map(cub);
 			exit(printf("Error\nFound an empty line inside the map\n"));
 		}
+	}
 	cub->map_content = ft_split(str, '\n');
 	fre(str);
 }
@@ -84,16 +84,15 @@ void	check_player_position(t_cub *cub)
 	{
 		j = -1;
 		while (cub->map_content[i][++j])
+		{
 			if (cub->map_content[i][j] == 'N' || cub->map_content[i][j] == 'S'
 				|| cub->map_content[i][j] == 'E'
 				|| cub->map_content[i][j] == 'W')
 			{
 				pos_count++;
-				cub->player.point.x = j;
-				cub->player.point.y = i;
-				cub->char_player = cub->map_content[i][j];
-				cub->map_content[i][j] = '0';
+				save_player_data(cub, i, j);
 			}
+		}
 	}
 	if (pos_count != 1)
 	{
@@ -104,7 +103,7 @@ void	check_player_position(t_cub *cub)
 
 void	check_map(t_cub *cub)
 {
-	fill_map(cub);                       // done
-	check_empty_line(cub, cub->content); // done
+	fill_map(cub);
+	check_empty_line(cub, cub->content);
 	is_valid_map(cub);
 }
