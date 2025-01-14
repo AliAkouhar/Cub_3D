@@ -24,11 +24,11 @@ void	fre(char *str)
 void	free_all_map(t_cub *cub)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < 4)
 	{
-		if(cub->textures[i].path)
+		if (cub->textures[i].path)
 		{
 			if (cub->textures[i].img)
 				mlx_destroy_image(cub->mlx, cub->textures[i].img);

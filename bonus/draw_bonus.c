@@ -2,7 +2,7 @@
 
 unsigned int	rgb_to_hex(t_color color)
 {
-	unsigned int color1;
+	unsigned int	color1;
 
 	color1 = (color.r << 16) | (color.g << 8) | color.b;
 	return (color1);

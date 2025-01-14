@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_colors.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 13:04:43 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/13 13:04:44 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
 int	check_digit(char **str)
@@ -25,7 +37,7 @@ int	check_digit(char **str)
 	return (0);
 }
 
-void	check_rgb(int *j, char *str, t_cub *cub, char c, char *to_free)
+void	check_rgb(int *j, char *str, t_cub *cub, char *to_free)
 {
 	char	**split;
 	char	*trim;
@@ -41,7 +53,7 @@ void	check_rgb(int *j, char *str, t_cub *cub, char c, char *to_free)
 		fre(to_free);
 		exit(printf("Error\nInvalid color format\n"));
 	}
-	assign_color(cub, split, c);
+	assign_color(cub, split, cub->c);
 	(*j)++;
 	free_2d(split);
 }

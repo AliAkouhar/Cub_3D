@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 09:57:49 by fbazaz            #+#    #+#             */
-/*   Updated: 2024/12/27 11:08:53 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/13 12:50:02 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,25 @@ void	check_top_buttom_borders(t_cub *cub)
 	i = 0;
 	j = -1;
 	while (cub->map_content[i][++j])
+	{
 		if (cub->map_content[i][j] != '1' && cub->map_content[i][j] != ' ')
 		{
 			free_all_map(cub);
 			exit(printf("Error\nMap isn't closed by walls (T)\n"));
 		}
+	}
 	while (cub->map_content[++i])
 		;
 	j = -1;
 	while (cub->map_content[i - 1][++j])
+	{
 		if (cub->map_content[i - 1][j] != '1' && cub->map_content[i
 			- 1][j] != ' ')
 		{
 			free_all_map(cub);
 			exit(printf("Error\nMap isn't closed by walls (B)\n"));
 		}
+	}
 }
 
 void	is_valid_map(t_cub *cub)

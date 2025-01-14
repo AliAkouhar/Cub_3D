@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:44:29 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 07:54:30 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/13 12:57:11 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,18 @@ void	ft_parsing(t_cub *cub, int ac, char **av)
 {
 	if (ac != 2)
 		exit(printf("USAGE ERROR:\n./cub3D <map>.cub\n"));
-	is_extension(av[1]); // done
-	get_map(cub, av[1]); // done
-	check_textures(cub); // done
-	check_colors(cub);   // done
+	is_extension(av[1]);
+	get_map(cub, av[1]);
+	check_textures(cub);
+	check_colors(cub);
 	adjust_map(cub);
 	check_map(cub);
 	cub->height = array_size(cub->map_content);
 	cub->width = ft_strlen(cub->map_content[0]);
 	cub->tile_map = 64;
 	cub->player.tile = cub->tile_map / 3;
+	cub->player.point.x = (cub->player.point.x * cub->tile_map) + (cub->tile_map
+			/ 2);
+	cub->player.point.y = (cub->player.point.y * cub->tile_map) + (cub->tile_map
+			/ 2);
 }

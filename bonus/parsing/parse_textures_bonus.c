@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_textures.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 13:04:53 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/13 13:04:54 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
 void	error_textures(t_cub *cub, int j)
@@ -76,4 +88,27 @@ void	check_textures(t_cub *cub)
 	if (trim)
 		fre(trim);
 	error_textures(cub, j);
+}
+
+void	save_player_data(t_cub *cub, int i, int j)
+{
+	cub->player.point.x = j;
+	cub->player.point.y = i;
+	cub->char_player = cub->map_content[i][j];
+	if (cub->char_player == 'N')
+		cub->player.rotation_angle = -PI / 2;
+	else if (cub->char_player == 'S')
+		cub->player.rotation_angle = PI / 2;
+	else if (cub->char_player == 'E')
+		cub->player.rotation_angle = 0;
+	else if (cub->char_player == 'W')
+		cub->player.rotation_angle = PI;
+	cub->map_content[i][j] = '0';
+}
+
+void	fill_norm_25(t_cub *cub)
+{
+	fre(cub->content);
+	free_all_map(cub);
+	exit(printf("Error\nEmpty map\n"));
 }

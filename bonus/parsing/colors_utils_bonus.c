@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   colors_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 13:04:30 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/13 13:04:31 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../headers/cub3d.h"
 
 void	assign_color(t_cub *cub, char **split, char c)
@@ -20,13 +32,15 @@ void	ft_norm_25_2(char *trim, t_cub *cub, int i, int *j)
 {
 	if (!ft_strncmp(trim, "F ", 2) && cub->floor_color.r == -1)
 	{
-		check_rgb(j, trim + 2, cub, 'F', trim);
+		cub->c = 'F';
+		check_rgb(j, trim + 2, cub, trim);
 		fre(cub->map_content[i]);
 		cub->map_content[i] = ft_strdup("");
 	}
 	if (!ft_strncmp(trim, "C ", 2) && cub->ceiling_color.r == -1)
 	{
-		check_rgb(j, trim + 2, cub, 'C', trim);
+		cub->c = 'C';
+		check_rgb(j, trim + 2, cub, trim);
 		fre(cub->map_content[i]);
 		cub->map_content[i] = ft_strdup("");
 	}
@@ -42,6 +56,7 @@ void	check_player_spaces_position(t_cub *cub)
 	{
 		j = -1;
 		while (cub->map_content[i][++j])
+		{
 			if (cub->map_content[i][j] == '0' || cub->map_content[i][j] == 'N'
 				|| cub->map_content[i][j] == 'S'
 				|| cub->map_content[i][j] == 'E'
@@ -56,5 +71,6 @@ void	check_player_spaces_position(t_cub *cub)
 					exit(1);
 				}
 			}
+		}
 	}
 }
