@@ -27,7 +27,7 @@ int	key_press(int key, t_cub *cub)
 		cub->player.turn_direction = +1;
 	else if (key == LEFT)
 		cub->player.turn_direction = -1;
-	else if (key == SPACE && !cub->weapon_shooting)
+	else if (key == SPACE)
     {
         cub->weapon_shooting = 1;
         cub->weapon_frame = 0;

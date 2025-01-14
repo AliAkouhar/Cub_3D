@@ -27,7 +27,7 @@ void    render_weapon(t_cub *cub, int index)
     int     i;
     int     j;
     unsigned int     color;
-    t_point weapon_img;
+    t_point         weapon_img;
 
     weapon_img.x = (SCREEN_WIDTH - cub->weapon[index].texture_width) / 2;
     weapon_img.y = SCREEN_HEIGHT - cub->weapon[index].texture_height;
@@ -57,9 +57,8 @@ void    weapon_animation(t_cub *cub)
             cub->weapon_shooting = 0;
         }
     }
-    else if (!cub->weapon_shooting && cub->weapon_frame != 0)
+    if (!cub->weapon_shooting && cub->weapon_frame != 0)
     {
-        usleep(40000);
         cub->weapon_frame--;
     }
 }
