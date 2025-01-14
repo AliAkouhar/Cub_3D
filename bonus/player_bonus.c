@@ -27,7 +27,7 @@ int	is_wall(t_cub *cub, float x, float y)
 	float	dy;
 	float	step;
 
-	step = 1.0;
+	step = 5.0;
 	dx = -step;
 	while (dx <= step)
 	{

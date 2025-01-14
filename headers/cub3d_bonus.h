@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 13:19:03 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/14 10:37:03 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # include <stdbool.h>
 
 # define PI 3.14159265358979323846
-// # define WALL_STRIP_WIDTH 3
 # define LINE_SIZE 200
 
 # define SCREEN_WIDTH 1500
@@ -44,6 +43,7 @@
 # define ESC 65307
 # define LEFT_MOUSE 1
 # define RIGHT_MOUSE 3
+# define SPACE 32
 
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF

@@ -27,6 +27,8 @@ int	key_press(int key, t_cub *cub)
 		cub->player.turn_direction = +1;
 	else if (key == LEFT)
 		cub->player.turn_direction = -1;
+	// else if (key == SPACE)
+	// 	weapon_animation(cub);
 	return (0);
 }
 
