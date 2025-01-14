@@ -10,7 +10,8 @@ SRC = ./mandatory/main.c ./mandatory/parsing/parsing.c ./mandatory/parsing/utils
 
 SRC_BONUS = ./bonus/main_bonus.c ./bonus/parsing/parsing_bonus.c ./bonus/parsing/utils_bonus.c ./bonus/parsing/check_map_bonus.c ./bonus/parsing/parse_map_bonus.c ./bonus/parsing/parse_textures_bonus.c \
 	 ./bonus/parsing/parse_colors_bonus.c ./bonus/parsing/colors_utils_bonus.c ./bonus/parsing/map_utils_bonus.c ./bonus/player_bonus.c ./bonus/draw_bonus.c ./bonus/events_bonus.c ./bonus/ray_casting_bonus.c \
-	 ./bonus/casting_utils_bonus.c ./bonus/utils2_bonus.c ./bonus/init_bonus.c ./bonus/texture_utils_bonus.c ./bonus/zoom.c ./bonus/render_bonus_features.c ./bonus/mouse.c ./bonus/weapon.c ./bonus/init_utils.c
+	 ./bonus/casting_utils_bonus.c ./bonus/utils2_bonus.c ./bonus/init_bonus.c ./bonus/texture_utils_bonus.c ./bonus/zoom.c ./bonus/render_bonus_features.c ./bonus/mouse.c ./bonus/weapon.c ./bonus/init_utils.c \
+	 ./bonus/minimap.c ./bonus/doors.c
 
 OBJ = $(SRC:%.c=%.o)
 OBJ_BONUS = $(SRC_BONUS:%.c=%.o)

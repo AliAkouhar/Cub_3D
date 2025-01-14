@@ -22,6 +22,7 @@ void	load_textures(t_cub *cub)
 	}
 	load_zoom(cub);
 	load_weapon(cub);
+	load_doors(cub);
 }
 
 void	init_textures(t_cub *cub)
@@ -38,7 +39,7 @@ void	init_textures(t_cub *cub)
 	cub->zoom.path = NULL;
 	cub->zoom.img = NULL;
 	init_weapon_textures(cub);
-	// init_door_textures(cub);
+	init_door_textures(cub);
 }
 
 void	init_cub(t_cub *cub)

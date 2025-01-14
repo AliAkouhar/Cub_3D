@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/14 11:41:47 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/14 16:27:01 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@
 # define LEFT_MOUSE 1
 # define RIGHT_MOUSE 3
 # define SPACE 32
-# define WEAPON_FRAME_NUMBER 22
+# define WEAPON_FRAME_NUMBER 19
 # define DOOR_FRAME_NUMBER 22
+# define MINI_MAP_HEIGHT 1000
+# define MINI_MAP_WIDTH 1000
 
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
@@ -70,6 +72,7 @@ typedef struct point
 	float	x;
 	float	y;
 	int		ver_inter;
+	bool	is_door;
 }	t_point;
 
 typedef	struct	s_player
@@ -102,7 +105,7 @@ typedef struct cub
 {
 	int			tile_map;
 	char		*content;
-	char		**map_content; // to free
+	char		**map_content;
 	char		char_player;
 	char 		c;
 	t_texture	textures[4];
@@ -182,11 +185,10 @@ t_point		vertical_intersection(t_cub *cub, t_ray ray);
 t_point		horizontal_intersection(t_cub *cub, t_ray ray);
 void    	ray_direction(t_ray *ray, float rayAngle);
 float   	get_distance(float x1, float y1, float x2, float y2);
-bool    	is_a_wall(t_cub *cub, t_point point, char c, t_ray ray);
-int			get_right_texture(t_cub *cub, t_point endPoint);
+bool    	is_a_wall(t_cub *cub, t_point *point, char c, t_ray ray);
+t_texture	get_right_texture(t_cub *cub, t_point endPoint);
 t_point		cast(t_cub *cub);
-void    	draw_mini_map(t_cub *cub);
-void		render_textures_wall(t_cub *cub, t_point point, int tex_index);
+void		render_textures_wall(t_cub *cub, t_point point, t_texture texture);
 //! bonus
 void    	render_bonus_features(t_cub *cub);
 void    	render_zoom(t_cub *cub);
@@ -198,7 +200,8 @@ void    	render_weapon(t_cub *cub, int index);
 void    	init_door_textures(t_cub *cub);
 void    	init_weapon_textures(t_cub *cub);
 void    	weapon_animation(t_cub *cub);
-
-
+void		render_mini_map(t_cub *cub);
+void    	load_doors(t_cub *cub);
+void    	render_doors(t_cub *cub, t_point point);
 
 #endif

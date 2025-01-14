@@ -22,6 +22,28 @@ void    load_weapon(t_cub *cub)
     }
 }
 
+void    load_doors(t_cub *cub)
+{
+    int i;
+
+    i = 0;
+    while (i < DOOR_FRAME_NUMBER)
+    {
+        cub->doors[i].img = mlx_xpm_file_to_image(cub->mlx,
+                    cub->doors[i].path, &cub->doors[i].texture_width,
+                    &cub->doors[i].texture_height);
+        if (!cub->weapon[i].img)
+        {
+            free_all_map(cub);
+            exit(printf("Error\nFailed to load texture\n"));
+        }
+        cub->doors[i].addr = mlx_get_data_addr(cub->doors[i].img,
+                &cub->doors[i].b_per_pixel, &cub->doors[i].line_length,
+                &cub->doors[i].endian);
+        i++;
+    }
+}
+
 void    render_weapon(t_cub *cub, int index)
 {
     int     i;
@@ -56,6 +78,7 @@ void    weapon_animation(t_cub *cub)
             cub->weapon_frame = 0;
             cub->weapon_shooting = 0;
         }
+        render_weapon(cub, cub->weapon_frame);
     }
     if (!cub->weapon_shooting && cub->weapon_frame != 0)
     {
