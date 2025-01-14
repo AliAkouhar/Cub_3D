@@ -54,7 +54,7 @@ void    weapon_animation(t_cub *cub)
         if (cub->weapon_frame >= WEAPON_FRAME_NUMBER)
         {
             cub->weapon_frame = 0;
-            cub->weapon_shooting = 0; // Stop animation
+            cub->weapon_shooting = 0;
         }
     }
     else if (!cub->weapon_shooting && cub->weapon_frame != 0)
