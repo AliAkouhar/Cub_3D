@@ -3,5 +3,5 @@
 void    render_bonus_features(t_cub *cub)
 {
     render_zoom(cub);
-    render_weapon(cub);
+    render_weapon(cub, cub->weapon_frame);
 }

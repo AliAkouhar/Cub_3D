@@ -87,5 +87,4 @@ void	cast_all_rays(t_cub *cub)
 		cub->player.current_ray_angle += ray_increment;
 		i++;
 	}
-	render_bonus_features(cub);
 }

@@ -37,7 +37,8 @@ void	init_textures(t_cub *cub)
 	}
 	cub->zoom.path = NULL;
 	cub->zoom.img = NULL;
-	cub->weapon.img = NULL;
+	init_weapon_textures(cub);
+	// init_door_textures(cub);
 }
 
 void	init_cub(t_cub *cub)
@@ -58,6 +59,8 @@ void	init_cub(t_cub *cub)
 	cub->player.fov_angle = 60 * (PI / 180);
 	cub->player.rotation_angle = PI / 2;
 	cub->player.rotation_speed = 2 * (PI / 180);
+	cub->weapon_frame = 0;
+	cub->weapon_shooting = 0;
 }
 
 void	init_mlx(t_cub *cub)

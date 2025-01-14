@@ -27,8 +27,11 @@ int	key_press(int key, t_cub *cub)
 		cub->player.turn_direction = +1;
 	else if (key == LEFT)
 		cub->player.turn_direction = -1;
-	// else if (key == SPACE)
-	// 	weapon_animation(cub);
+	else if (key == SPACE && !cub->weapon_shooting)
+    {
+        cub->weapon_shooting = 1;
+        cub->weapon_frame = 0;
+    }
 	return (0);
 }
 
@@ -46,5 +49,10 @@ int	key_release(int key, t_cub *cub)
 		cub->player.turn_direction = 0;
 	else if (key == LEFT)
 		cub->player.turn_direction = 0;
+	else if (key == SPACE)
+	{
+		cub->weapon_shooting = 0;
+		cub->weapon_frame = 0;
+	}
 	return (0);
 }

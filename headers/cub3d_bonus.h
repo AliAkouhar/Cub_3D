@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/14 10:37:03 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:41:47 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define LEFT_MOUSE 1
 # define RIGHT_MOUSE 3
 # define SPACE 32
+# define WEAPON_FRAME_NUMBER 22
+# define DOOR_FRAME_NUMBER 22
 
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
@@ -105,7 +107,10 @@ typedef struct cub
 	char 		c;
 	t_texture	textures[4];
 	t_texture	zoom;
-	t_texture	weapon;
+	t_texture	weapon[WEAPON_FRAME_NUMBER];
+	int			weapon_frame;
+    int			weapon_shooting;
+	t_texture	doors[DOOR_FRAME_NUMBER];
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
@@ -189,8 +194,10 @@ void    	load_zoom(t_cub *cub);
 int			mouse_press(int botton, int x, int y, t_cub *cub);
 int 		mouse_release(int botton, int x, int y, t_cub *cub);
 void    	load_weapon(t_cub *cub);
-void    	render_weapon(t_cub *cub);
-
+void    	render_weapon(t_cub *cub, int index);
+void    	init_door_textures(t_cub *cub);
+void    	init_weapon_textures(t_cub *cub);
+void    	weapon_animation(t_cub *cub);
 
 
 
