@@ -57,7 +57,7 @@ void	init_cub(t_cub *cub)
 	cub->player.left_right = 0;
 	cub->player.speed = 2.0;
 	cub->player.fov_angle = 60 * (PI / 180);
-	cub->player.rotation_angle = PI / 2;
+	cub->player.rotation_angle = 0;
 	cub->player.rotation_speed = 2 * (PI / 180);
 	cub->weapon_frame = 0;
 	cub->weapon_shooting = 0;
