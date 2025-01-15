@@ -6,7 +6,7 @@ t_texture    render_doors(t_cub *cub, t_point point)
 
     distance_to_door = get_distance(cub->player.point.x, cub->player.point.y,
                         point.x, point.y);
-    if (distance_to_door <= 80)
+    if (distance_to_door <= 50)
         cub->is_door_open = 1;
     else
         cub->is_door_open = 0;

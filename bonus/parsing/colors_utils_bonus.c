@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colors_utils.c                                     :+:      :+:    :+:   */
+/*   colors_utils_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:04:30 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 13:04:31 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:13:41 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ void	ft_norm_25_2(char *trim, t_cub *cub, int i, int *j)
 	}
 }
 
+void	check_door_borders(t_cub *cub, int i, int j)
+{
+	if ((cub->map_content[i][j + 1] != '1' || cub->map_content[i][j - 1] != '1') &&
+		(cub->map_content[i - 1][j] != '1' || cub->map_content[i + 1][j] != '1'))
+	{
+		printf("Error\nInvalid door position\n");
+		exit(1);
+	}
+}
+
 void	check_player_spaces_position(t_cub *cub)
 {
 	int	i;
@@ -57,18 +67,18 @@ void	check_player_spaces_position(t_cub *cub)
 		j = -1;
 		while (cub->map_content[i][++j])
 		{
+			if (cub->map_content[i][j] == 'D')
+				check_door_borders(cub, i, j);
 			if (cub->map_content[i][j] == '0' || cub->map_content[i][j] == 'N'
-				|| cub->map_content[i][j] == 'S'
-				|| cub->map_content[i][j] == 'E'
-				|| cub->map_content[i][j] == 'W')
+			|| cub->map_content[i][j] == 'S' || cub->map_content[i][j] == 'E'
+			|| cub->map_content[i][j] == 'W')
 			{
 				if (cub->map_content[i][j + 1] == 'a' || cub->map_content[i][j
 					- 1] == 'a' || cub->map_content[i + 1][j] == 'a'
 					|| cub->map_content[i - 1][j] == 'a')
 				{
-					printf("Error\nPlayer position\n");
 					free_all_map(cub);
-					exit(1);
+					exit(printf("Error\nPlayer position\n"));
 				}
 			}
 		}

@@ -55,8 +55,8 @@ void	draw_3d_walls(t_cub *cub, t_point point, t_texture texture)
 			point.x, point.y);
 	cub->ray_distance *= cos(cub->player.rotation_angle
 			- cub->player.current_ray_angle);
-	if (cub->ray_distance < 1.5)
-		cub->ray_distance = 1.5;
+	if (cub->ray_distance < 1)
+		cub->ray_distance = 1;
 	cub->distance_pp = (SCREEN_WIDTH / 2) / tan(cub->player.fov_angle / 2);
 	cub->wall_strip_height = (cub->tile_map * cub->distance_pp)
 		/ cub->ray_distance;

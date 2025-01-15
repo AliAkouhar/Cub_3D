@@ -9,14 +9,12 @@ float	get_wall_x(t_cub *cub, t_point point)
 
 int	get_texture_x(t_cub *cub, float wall_x, t_texture texture)
 {
-	return ((int)(wall_x * (texture.texture_width
-			/ cub->tile_map)));
+	return ((int)(wall_x * (texture.texture_width / cub->tile_map)));
 }
 
 int	get_texture_y(t_cub *cub, int y, t_texture texture)
 {
-	return (((y - cub->wall_top_pixel)
-			* texture.texture_height)
+	return (((y - cub->wall_top_pixel) * texture.texture_height)
 		/ cub->wall_strip_height);
 }
 

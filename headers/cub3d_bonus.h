@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/15 10:01:42 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/15 12:03:06 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,7 @@ void		render_mini_map(t_cub *cub);
 void    	load_doors(t_cub *cub);
 t_texture	render_doors(t_cub *cub, t_point point);
 void    	door_animation(t_cub *cub);
+void    	draw_mini_map(t_cub *cub);
+
 
 #endif

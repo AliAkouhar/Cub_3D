@@ -1,6 +1,6 @@
 EA ./textures/horrorPic2.xpm
-NO ./textures/redTriangle.xpm
-SO ./textures/redTriangle.xpm
+NO ./textures/horrorPic2.xpm
+SO ./textures/horrorPic2.xpm
 WE ./textures/jokerPic.xpm
 
 F 30,30,30
