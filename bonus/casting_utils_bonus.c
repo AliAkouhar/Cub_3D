@@ -5,23 +5,25 @@ float	get_distance(float x1, float y1, float x2, float y2)
 	return (sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1))));
 }
 
-bool	is_a_wall(t_cub *cub, t_point *point, char c, t_ray ray)
+bool	is_a_wall(t_cub *cub, t_point *inter, char c, t_ray ray)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
+	t_point	point;
 
-	point->is_door = false;
+	inter->is_door = false;
+	point = *inter;
 	if (c == 'h' && ray.isRayUp)
-		point->y--;
+		point.y--;
 	if (c == 'v' && ray.isRayLeft)
-		point->x--;
-	x = floor(point->x / cub->tile_map);
-	y = floor(point->y / cub->tile_map);
+		point.x--;
+	x = floor(point.x / cub->tile_map);
+	y = floor(point.y / cub->tile_map);
 	if (x >= 0 && x < cub->width && y >= 0 && y < cub->height)
 		if (cub->map_content[y][x] == '1' || cub->map_content[y][x] == 'D')
 		{
 			if (cub->map_content[y][x] == 'D')
-				point->is_door = true;
+				inter->is_door = true;
 			return (true);
 		}
 	return (false);
