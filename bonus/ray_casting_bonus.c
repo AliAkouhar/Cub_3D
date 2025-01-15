@@ -84,7 +84,7 @@ void	cast_all_rays(t_cub *cub)
 		endpoint = cast(cub);
 		texture = get_right_texture(cub, endpoint);
 		if (endpoint.is_door)
-			render_doors(cub, endpoint);
+			texture = render_doors(cub, endpoint);
 		draw_3d_walls(cub, endpoint, texture);
 		cub->player.current_ray_angle += ray_increment;
 		i++;

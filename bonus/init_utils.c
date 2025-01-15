@@ -34,4 +34,6 @@ void    init_door_textures(t_cub *cub)
         cub->doors[i].path = ft_strjoin2(cub->doors[i].path, ".xpm");
         i++;
     }
+    cub->is_door_open = 0;
+    cub->door_frame = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/14 16:27:01 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/15 10:01:42 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define RIGHT_MOUSE 3
 # define SPACE 32
 # define WEAPON_FRAME_NUMBER 19
-# define DOOR_FRAME_NUMBER 22
+# define DOOR_FRAME_NUMBER 15
 # define MINI_MAP_HEIGHT 1000
 # define MINI_MAP_WIDTH 1000
 
@@ -114,6 +114,8 @@ typedef struct cub
 	int			weapon_frame;
     int			weapon_shooting;
 	t_texture	doors[DOOR_FRAME_NUMBER];
+	int			is_door_open;
+	int			door_frame;
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
@@ -202,6 +204,7 @@ void    	init_weapon_textures(t_cub *cub);
 void    	weapon_animation(t_cub *cub);
 void		render_mini_map(t_cub *cub);
 void    	load_doors(t_cub *cub);
-void    	render_doors(t_cub *cub, t_point point);
+t_texture	render_doors(t_cub *cub, t_point point);
+void    	door_animation(t_cub *cub);
 
 #endif
