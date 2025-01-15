@@ -26,3 +26,25 @@ t_texture	get_right_texture(t_cub *cub, t_point endPoint)
 			return (cub->textures[NORTH]);
 	}
 }
+
+// int	get_right_texture(t_cub *cub, t_point endPoint)
+// {
+// 	// if (endPoint.is_door)
+// 	// 	return (cub->doors[0]);
+// 	if (endPoint.ver_inter)
+// 	{
+// 		if (cub->player.current_ray_angle > 3 * PI / 2
+// 			|| cub->player.current_ray_angle < PI / 2)
+// 			return (EAST);
+// 		else
+// 			return (WEST);
+// 	}
+// 	else
+// 	{
+// 		if (cub->player.current_ray_angle > 0
+// 			&& cub->player.current_ray_angle < PI)
+// 			return (SOUTH);
+// 		else
+// 			return (NORTH);
+// 	}
+// }
