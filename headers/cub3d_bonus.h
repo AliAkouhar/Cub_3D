@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/15 15:42:39 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/16 12:09:10 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define PI 3.14159265358979323846
 # define LINE_SIZE 200
 
-# define SCREEN_WIDTH 1500
-# define SCREEN_HEIGHT 900
+# define SCREEN_WIDTH 1900
+# define SCREEN_HEIGHT 1000
 # define NUMBER_OF_RAYS SCREEN_WIDTH
 
 # define NORTH 0
@@ -207,6 +207,6 @@ void    	load_doors(t_cub *cub);
 t_texture	render_doors(t_cub *cub, t_point point);
 void    	door_animation(t_cub *cub);
 void    	draw_mini_map(t_cub *cub);
-
+void    	free_textures(t_cub *cub);
 
 #endif

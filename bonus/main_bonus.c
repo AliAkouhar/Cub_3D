@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:41:52 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/15 15:25:45 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/16 09:57:35 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 		|| SCREEN_HEIGHT > 1000)
 		return (printf("Error\nIvalid SCREEN_WIDTH or SCREEN_HEIGHT\n"), 1);
 	init_cub(&cub);
+	// printf("pppp\n");
 	ft_parsing(&cub, ac, av);
 	init_mlx(&cub);
 	mlx_loop_hook(cub.mlx, draw, &cub);

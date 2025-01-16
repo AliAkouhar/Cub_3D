@@ -73,7 +73,6 @@ void	render_3d(t_cub *cub)
 {
 	player_position(cub);
 	cast_all_rays(cub);
-	weapon_animation(cub);
     render_bonus_features(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

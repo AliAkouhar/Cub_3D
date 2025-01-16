@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:23:56 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 07:58:16 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/16 10:56:37 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	free_all_map(t_cub *cub)
 		}
 		i++;
 	}
-	if (cub->zoom.img)
-		mlx_destroy_image(cub->mlx, cub->zoom.img);
+	free_textures(cub);
 	if (cub->map_content)
 		free_2d(cub->map_content);
 }

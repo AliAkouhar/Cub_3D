@@ -7,6 +7,7 @@ void	load_textures(t_cub *cub)
 	i = 0;
 	while (i < 4)
 	{
+		cub->textures[i].addr = NULL;
 		cub->textures[i].img = mlx_xpm_file_to_image(cub->mlx,
 				cub->textures[i].path, &cub->textures[i].texture_width,
 				&cub->textures[i].texture_height);
