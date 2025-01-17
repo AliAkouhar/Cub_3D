@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:44:29 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/17 15:58:44 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 17:03:10 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	get_map(t_cub *cub, char *str)
 	i = 0;
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		exit(printf("Error\nConnot open the Map for\n"));
+		exit(printf("Error\nConnot open the Map\n"));
 	cub->map_content = malloc(sizeof(char *) * (ft_get_size(str) + 1));
 	if (!cub->map_content)
 		exit(printf("Error\nAllocation issue\n"));
@@ -90,7 +90,7 @@ void	get_map(t_cub *cub, char *str)
 	}
 }
 
-void	ft_parsing(t_cub *cub, int ac, char **av)
+void	ft_parsing(t_cub *cub, char **av)
 {
 	is_extension(av[1]);
 	get_map(cub, av[1]);

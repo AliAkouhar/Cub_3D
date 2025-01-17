@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 12:54:24 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 17:03:21 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct cub
 }			t_cub;
 
 
-void		ft_parsing(t_cub *cub, int ac, char **av);
+void		ft_parsing(t_cub *cub, char **av);
 void		is_extension(char *str);
 void		parse_map(t_cub *cub);
 void		parse_line(char *line, t_cub *cub, int *flag);
