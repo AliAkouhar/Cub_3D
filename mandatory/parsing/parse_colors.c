@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:04:43 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 13:04:44 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 17:31:03 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@ void	check_rgb(int *j, char *str, t_cub *cub, char *to_free)
 	split = NULL;
 	trim = ft_strtrim(str, " \t");
 	split = ft_split(trim, ',');
-	fre(trim);
-	if (!split || check_digit(split) == -1)
+	if (!split || check_digit(split) == -1 || trim[0] == ','
+		|| trim[ft_strlen(trim) - 1] == ',')
 	{
+		fre(trim);
 		free_2d(split);
 		free_all_map(cub);
 		fre(to_free);
 		exit(printf("Error\nInvalid color format\n"));
 	}
+	fre(trim);
 	assign_color(cub, split, cub->c);
 	(*j)++;
 	free_2d(split);

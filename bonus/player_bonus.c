@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 17:51:09 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/17 17:51:10 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub3d_bonus.h"
 
 void	draw_player_rectangle(t_cub *cub, int tile)
@@ -49,29 +61,29 @@ int	is_wall(t_cub *cub, float x, float y)
 
 void	player_position(t_cub *cub)
 {
-	float	moveStepX;
-	float	moveStepY;
-	float	newPosX;
-	float	newPosY;
+	float	move_step_x;
+	float	move_step_y;
+	float	new_pos_x;
+	float	new_pos_y;
 
 	cub->player.rotation_angle += cub->player.turn_direction
 		* cub->player.rotation_speed;
-	moveStepX = cos(cub->player.rotation_angle) * cub->player.walk_direction
+	move_step_x = cos(cub->player.rotation_angle) * cub->player.walk_direction
 		- sin(cub->player.rotation_angle) * cub->player.left_right;
-	moveStepY = sin(cub->player.rotation_angle) * cub->player.walk_direction
+	move_step_y = sin(cub->player.rotation_angle) * cub->player.walk_direction
 		+ cos(cub->player.rotation_angle) * cub->player.left_right;
-	newPosX = cub->player.point.x + moveStepX * cub->player.speed;
-	newPosY = cub->player.point.y + moveStepY * cub->player.speed;
-	if (is_wall(cub, newPosX, cub->player.point.y))
-		cub->player.point.x = newPosX;
-	if (is_wall(cub, cub->player.point.x, newPosY))
-		cub->player.point.y = newPosY;
+	new_pos_x = cub->player.point.x + move_step_x * cub->player.speed;
+	new_pos_y = cub->player.point.y + move_step_y * cub->player.speed;
+	if (is_wall(cub, new_pos_x, cub->player.point.y))
+		cub->player.point.x = new_pos_x;
+	if (is_wall(cub, cub->player.point.x, new_pos_y))
+		cub->player.point.y = new_pos_y;
 }
 
 void	render_3d(t_cub *cub)
 {
 	player_position(cub);
 	cast_all_rays(cub);
-    render_bonus_features(cub);
+	render_bonus_features(cub);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }

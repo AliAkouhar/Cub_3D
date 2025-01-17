@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_utils_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 17:51:26 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/17 17:51:27 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub3d_bonus.h"
 
 float	get_wall_x(t_cub *cub, t_point point)
@@ -26,13 +38,15 @@ unsigned int	get_texture_color(t_cub *cub, t_texture texture)
 {
 	unsigned int	color;
 
-	if (cub->texture_x < 0 || cub->texture_x >= texture.texture_width ||
-    	cub->texture_y < 0 || cub->texture_y >= texture.texture_height)
-		{
-			free_all_map(cub);
-    		exit(printf("Texture coordinates out of bounds\n"));
-		}
-	color = *(unsigned int *)(texture.addr + ((cub->texture_y * texture.line_length) + (cub->texture_x * (texture.b_per_pixel / 8))));
+	if (cub->texture_x < 0 || cub->texture_x >= texture.texture_width
+		|| cub->texture_y < 0 || cub->texture_y >= texture.texture_height)
+	{
+		free_all_map(cub);
+		exit(printf("Texture coordinates out of bounds\n"));
+	}
+	color = *(unsigned int *)(texture.addr + ((cub->texture_y
+					* texture.line_length) + (cub->texture_x
+					* (texture.b_per_pixel / 8))));
 	return (color);
 }
 

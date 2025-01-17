@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/17 17:50:45 by fbazaz            #+#    #+#             */
+/*   Updated: 2025/01/17 17:50:46 by fbazaz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../headers/cub3d_bonus.h"
 
 int	ft_close(t_cub *cub)
@@ -28,10 +40,10 @@ int	key_press(int key, t_cub *cub)
 	else if (key == LEFT)
 		cub->player.turn_direction = -1;
 	else if (key == SPACE)
-    {
-        cub->weapon_shooting = 1;
-        cub->weapon_frame = 0;
-    }
+	{
+		cub->weapon_shooting = 1;
+		cub->weapon_frame = 0;
+	}
 	return (0);
 }
 

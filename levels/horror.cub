@@ -3,8 +3,8 @@ NO ./textures/horrorPic2.xpm
 SO ./textures/horrorPic2.xpm
 WE ./textures/jokerPic.xpm
 
-F 30,30,30
-C 50,50,50
+F 0,0,0
+C 0,0,0
 
 11111111111111111111111111111
 10000000001100000000000000001

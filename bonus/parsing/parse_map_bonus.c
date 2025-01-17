@@ -86,7 +86,8 @@ void	check_player_position(t_cub *cub)
 		while (cub->map_content[i][++j])
 		{
 			if (cub->map_content[i][j] == 'N' || cub->map_content[i][j] == 'S'
-			|| cub->map_content[i][j] == 'E' || cub->map_content[i][j] == 'W')
+				|| cub->map_content[i][j] == 'E'
+				|| cub->map_content[i][j] == 'W')
 			{
 				pos_count++;
 				save_player_data(cub, i, j);
