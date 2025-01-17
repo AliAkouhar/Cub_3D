@@ -1,0 +1,7 @@
+EA ./textures/Keffiyeh.xpm
+NO ./textures/flag1.xpm
+SO ./textures/flag1.xpm
+WE ./textures/Keffiyeh.xpm
+
+C 255,255,255
+F 255,255,255

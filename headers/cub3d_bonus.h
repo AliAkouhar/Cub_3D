@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 18:30:00 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/16 12:09:10 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:25:22 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@
 # define SPACE 32
 # define WEAPON_FRAME_NUMBER 19
 # define DOOR_FRAME_NUMBER 15
-# define MINI_MAP_HEIGHT 1000
-# define MINI_MAP_WIDTH 1000
+# define RANGE_MINIMAP 500
+# define MINI_TILE 8
+# define MINI_MAP 0.2
 
 # define BLACK 0x00000000
 # define WHITE 0xFFFFFFFF
@@ -119,6 +120,9 @@ typedef struct cub
 	t_color		floor_color;
 	t_color		ceiling_color;
 	t_player	player;
+	t_point		start;
+	t_point		end;
+	t_point		render;
 	void		*mlx;
 	void		*win;
 	void		*img;
@@ -139,8 +143,8 @@ typedef struct cub
 }			t_cub;
 
 
-void		ft_parsing(t_cub *cub, int ac, char **av);
-void		is_extension(char *str);
+void		ft_parsing(t_cub *cub, char **av);
+void		is_extension(char *str, t_cub *cub);
 void		parse_map(t_cub *cub);
 void		parse_line(char *line, t_cub *cub, int *flag);
 void		parse_color(char *line, t_color *color, int *flag);
@@ -165,6 +169,7 @@ void    	check_player_spaces_position(t_cub *cub);
 void    	init_mlx(t_cub *cub);
 void		save_player_data(t_cub *cub, int i, int j);
 void		fill_norm_25(t_cub *cub);
+void    	free_to_exit(t_cub *cub);
 
 
 void		init_cub(t_cub *cub);

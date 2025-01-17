@@ -1,10 +1,10 @@
-EA ./textures/redTriangle.xpm
-NO ./textures/wall.xpm
-SO ./textures/wall.xpm
-WE ./textures/redTriangle.xpm
+EA ./textures/wall.xpm
+NO ./textures/palestine_triangle.xpm
+SO ./textures/aboobayda.xpm
+WE ./textures/wall.xpm
 
-F 105,105,105
-C 105,105,105
+F 0,0,0
+C 0,0,0
 
 11111111111111111111111111111
 10000000001100000000000000001

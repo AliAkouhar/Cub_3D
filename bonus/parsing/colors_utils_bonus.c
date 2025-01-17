@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:04:30 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/15 13:13:41 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:42:42 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	check_door_borders(t_cub *cub, int i, int j)
 	if ((cub->map_content[i][j + 1] != '1' || cub->map_content[i][j - 1] != '1') &&
 		(cub->map_content[i - 1][j] != '1' || cub->map_content[i + 1][j] != '1'))
 	{
+		free_all_map(cub);
 		printf("Error\nInvalid door position\n");
 		exit(1);
 	}

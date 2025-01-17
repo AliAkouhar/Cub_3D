@@ -28,7 +28,10 @@ unsigned int	get_texture_color(t_cub *cub, t_texture texture)
 
 	if (cub->texture_x < 0 || cub->texture_x >= texture.texture_width ||
     	cub->texture_y < 0 || cub->texture_y >= texture.texture_height)
-    	exit(printf("Texture coordinates out of bounds\n"));
+		{
+			free_all_map(cub);
+    		exit(printf("Texture coordinates out of bounds\n"));
+		}
 	color = *(unsigned int *)(texture.addr + ((cub->texture_y * texture.line_length) + (cub->texture_x * (texture.b_per_pixel / 8))));
 	return (color);
 }

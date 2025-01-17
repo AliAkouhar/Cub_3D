@@ -1,6 +1,6 @@
 EA ./textures/pacman1.xpm
-NO ./textures/pacman2.xpm
-SO ./textures/pacman3.xpm
+NO ./textures/pacman1.xpm
+SO ./textures/pacman1.xpm
 WE ./textures/pacman1.xpm
 
 C 0,0,0

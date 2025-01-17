@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:41:52 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 12:45:28 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 15:58:49 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int ac, char **av)
 {
 	t_cub	cub;
 
+	if (ac != 2)
+		exit(printf("USAGE ERROR:\n./cub3D <map>.cub\n"));
 	if (SCREEN_WIDTH < 0 || SCREEN_WIDTH > 2000 || SCREEN_HEIGHT < 0
 		|| SCREEN_HEIGHT > 1000)
 		return (printf("Error\nIvalid SCREEN_WIDTH or SCREEN_HEIGHT\n"), 1);

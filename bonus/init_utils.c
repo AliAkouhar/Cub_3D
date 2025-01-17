@@ -10,6 +10,7 @@ void    init_weapon_textures(t_cub *cub)
     while (i < WEAPON_FRAME_NUMBER)
     {
         cub->weapon[i].img = NULL;
+        cub->weapon[i].path = NULL;
         if (i <= 9)
             cub->weapon[i].path = ft_strdup("./textures/weapon/weapon_0");
         else
@@ -31,6 +32,7 @@ void    init_door_textures(t_cub *cub)
     tmp = NULL;
     while (i < DOOR_FRAME_NUMBER)
     {
+        cub->doors[i].img = NULL;
         cub->doors[i].img = NULL;
         if (i <= 9)
             cub->doors[i].path = ft_strdup("./textures/doors/door_0");

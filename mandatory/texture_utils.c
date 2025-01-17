@@ -6,7 +6,7 @@
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 13:27:24 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/16 11:08:14 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:09:00 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ unsigned int	get_texture_color(t_cub *cub, int tex_index)
 {
 	unsigned int	color;
 
-	if (cub->texture_x < 0 || cub->texture_x >= cub->textures[tex_index].texture_width ||
-    	cub->texture_y < 0 || cub->texture_y >= cub->textures[tex_index].texture_height)
-    	exit(printf("Texture coordinates out of bounds\n"));
+	if (cub->texture_x < 0
+		|| cub->texture_x >= cub->textures[tex_index].texture_width
+		|| cub->texture_y < 0
+		|| cub->texture_y >= cub->textures[tex_index].texture_height)
+		exit(printf("Texture coordinates out of bounds\n"));
 	color = *(unsigned int *)(cub->textures[tex_index].addr + (cub->texture_y
 				* cub->textures[tex_index].line_length + cub->texture_x
 				* (cub->textures[tex_index].b_per_pixel / 8)));

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 10:44:29 by fbazaz            #+#    #+#             */
-/*   Updated: 2025/01/13 12:57:11 by fbazaz           ###   ########.fr       */
+/*   Updated: 2025/01/17 16:24:03 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d_bonus.h"
 
-void	is_extension(char *str)
+void	is_extension(char *str, t_cub *cub)
 {
 	char	*s;
 	int		fd;
@@ -25,7 +25,10 @@ void	is_extension(char *str)
 	}
 	s = ft_strchr(str, '.');
 	if (!s || ft_strcmp(s, ".cub"))
+	{
+		free_all_map(cub);
 		exit(printf("Error\nYour filename should end by <.cub>\n"));
+	}
 }
 
 int	ft_get_size(char *str)
@@ -70,7 +73,7 @@ void	get_map(t_cub *cub, char *str)
 	i = 0;
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		exit(printf("Error\nConnot open the Map for\n"));
+		free_to_exit(cub);
 	cub->map_content = malloc(sizeof(char *) * (ft_get_size(str) + 1));
 	if (!cub->map_content)
 		exit(printf("Error\nAllocation issue\n"));
@@ -90,11 +93,9 @@ void	get_map(t_cub *cub, char *str)
 	}
 }
 
-void	ft_parsing(t_cub *cub, int ac, char **av)
+void	ft_parsing(t_cub *cub, char **av)
 {
-	if (ac != 2)
-		exit(printf("USAGE ERROR:\n./cub3D <map>.cub\n"));
-	is_extension(av[1]);
+	is_extension(av[1], cub);
 	get_map(cub, av[1]);
 	check_textures(cub);
 	check_colors(cub);

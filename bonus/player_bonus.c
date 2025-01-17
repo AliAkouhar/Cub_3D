@@ -62,7 +62,6 @@ void	player_position(t_cub *cub)
 		+ cos(cub->player.rotation_angle) * cub->player.left_right;
 	newPosX = cub->player.point.x + moveStepX * cub->player.speed;
 	newPosY = cub->player.point.y + moveStepY * cub->player.speed;
-	//wall collision
 	if (is_wall(cub, newPosX, cub->player.point.y))
 		cub->player.point.x = newPosX;
 	if (is_wall(cub, cub->player.point.x, newPosY))
