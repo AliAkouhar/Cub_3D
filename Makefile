@@ -1,7 +1,7 @@
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
 GNL = gnl/gnl
 SRC = ./mandatory/main.c ./mandatory/parsing/parsing.c ./mandatory/parsing/utils.c ./mandatory/parsing/check_map.c ./mandatory/parsing/parse_map.c ./mandatory/parsing/parse_textures.c \
@@ -27,11 +27,11 @@ $(LIBFT):
 
 $(NAME): $(OBJ) $(HEADER)
 	$(CC) $(OBJ) $(CFLAGS) $(GNL) $(LIBFT) -L headers/minilibx-linux -lmlx -lXext -lX11 -lm -o $(NAME)
-	@make clean
 
-bonus: $(GNL) $(LIBFT) $(OBJ_BONUS)
+$(NAME_BONUS): $(OBJ_BONUS)
 	$(CC) $(OBJ_BONUS) $(CFLAGS) $(GNL) $(LIBFT) -L headers/minilibx-linux -lmlx -lXext -lX11 -lm -o $(NAME_BONUS)
-	@make clean
+
+bonus: $(GNL) $(LIBFT) $(NAME_BONUS)
 
 clean:
 	make clean -C libft
