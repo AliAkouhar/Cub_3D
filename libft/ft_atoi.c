@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aakouhar <aakouhar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fbazaz <fbazaz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 09:15:49 by aakouhar          #+#    #+#             */
-/*   Updated: 2023/11/14 16:57:53 by aakouhar         ###   ########.fr       */
+/*   Updated: 2025/01/18 10:53:17 by fbazaz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,5 @@ int	ft_atoi(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	// if (str[i])
-	// 	exit(printf("Error\nEnter a valid RGB value\n"));
 	return (res * signe);
 }
